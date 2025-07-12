@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-// SVG Icon cho mũi tên đi lên
 const ArrowUpIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -21,17 +20,14 @@ const ArrowUpIcon = () => (
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Hàm này sẽ được gọi khi người dùng cuộn trang
   const toggleVisibility = () => {
-    // Nếu vị trí cuộn > 300px, hiển thị nút. Ngược lại, ẩn đi.
-    if (window.scrollY > 300) {
+    if (window.scrollY > 100) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
     }
   };
 
-  // Hàm để cuộn lên đầu trang một cách mượt mà
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -40,10 +36,8 @@ const ScrollToTopButton = () => {
   };
 
   useEffect(() => {
-    // Thêm một event listener để theo dõi sự kiện cuộn trang
     window.addEventListener("scroll", toggleVisibility);
 
-    // Dọn dẹp event listener khi component bị gỡ bỏ để tránh rò rỉ bộ nhớ
     return () => {
       window.removeEventListener("scroll", toggleVisibility);
     };

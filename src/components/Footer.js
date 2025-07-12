@@ -191,6 +191,11 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#" className="hover:text-blue-600 hover:underline">
+                  Tin tức
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-blue-600 hover:underline">
                   Đề án tuyển sinh
                 </a>
               </li>
