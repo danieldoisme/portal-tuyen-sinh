@@ -1,5 +1,3 @@
-import React from "react";
-
 const FacebookIcon = () => (
   <svg
     className="w-6 h-6"

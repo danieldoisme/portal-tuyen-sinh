@@ -1,21 +1,23 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTopButton from "./components/ScrollToTopButton";
+import Banner from "./components/Banner";
 
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <div className="pt-20">
-        <main className="flex-grow p-8">
+      <main className="flex-grow">
+        <Banner />
+        <div className="p-8">
           <h1 className="text-2xl font-bold">Cổng thông tin tuyển sinh</h1>
 
           <div className="h-screen"></div>
           <p>Nội dung trang...</p>
           <div className="h-screen"></div>
-        </main>
-        <Footer />
-      </div>
+        </div>
+      </main>
+      <Footer />
 
       <ScrollToTopButton />
     </div>
