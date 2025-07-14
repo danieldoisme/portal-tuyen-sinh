@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Banner from "./components/Banner";
+import Admissions from "./components/Admissions";
 
 function App() {
   return (
@@ -9,6 +10,9 @@ function App() {
       <Header />
       <main className="flex-grow">
         <Banner />
+        <Admissions />
+
+        {/* Placeholder for content */}
         <div className="p-8">
           <h1 className="text-2xl font-bold">Cổng thông tin tuyển sinh</h1>
 
