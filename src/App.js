@@ -3,6 +3,7 @@ import Footer from "./components/Footer";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Banner from "./components/Banner";
 import Admissions from "./components/Admissions";
+import Announcements from "./components/Announcements";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <p>Nội dung trang...</p>
           <div className="h-screen"></div>
         </div>
+        <Announcements />
       </main>
       <Footer />
 

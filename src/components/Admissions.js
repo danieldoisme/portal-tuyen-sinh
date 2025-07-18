@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import AdmissionCard from "./AdmissionCard";
 
-const mockApiData = [
+const mockApiDataNorth = [
   {
     icon: "https://placehold.co/64x64/fef2f2/ef4444?text=ICON",
     title: "Trí tuệ nhân tạo vạn vật (AIoT)",
@@ -33,7 +33,7 @@ const mockApiData = [
   {
     icon: "https://placehold.co/64x64/fef2f2/ef4444?text=ICON",
     title: "Chương trình Truyền thông đa phương tiện chất lượng cao",
-    codePrefix: "Mã chương trình",
+    codePrefix: "Mã ngành",
     code: "7320104_CLC",
     quota: 90,
   },
@@ -46,20 +46,48 @@ const mockApiData = [
   },
 ];
 
+const mockApiDataSouth = [
+  {
+    icon: "https://placehold.co/64x64/fef2f2/ef4444?text=ICON",
+    title: "Ngành Công nghệ thông tin",
+    codePrefix: "Mã ngành",
+    code: "7480201",
+    quota: 230,
+  },
+  {
+    icon: "https://placehold.co/64x64/fef2f2/ef4444?text=ICON",
+    title: "Ngành An toàn thông tin",
+    codePrefix: "Mã ngành",
+    code: "7480202",
+    quota: 120,
+  },
+  {
+    icon: "https://placehold.co/64x64/fef2f2/ef4444?text=ICON",
+    title: "Ngành Kỹ thuật Điện tử viễn thông",
+    codePrefix: "Mã ngành",
+    code: "7520207",
+    quota: 140,
+  },
+];
+
 const Admissions = () => {
   const [admissionsData, setAdmissionsData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState("north");
 
   useEffect(() => {
     const fetchData = () => {
+      setLoading(true);
       setTimeout(() => {
-        setAdmissionsData(mockApiData);
+        setAdmissionsData(
+          activeTab === "north" ? mockApiDataNorth : mockApiDataSouth
+        );
         setLoading(false);
-      }, 1000);
+      }, 500);
     };
 
     fetchData();
-  }, []);
+  }, [activeTab]);
 
   return (
     <section className="py-12 bg-white">
@@ -72,13 +100,25 @@ const Admissions = () => {
         </div>
 
         <div className="flex justify-center border-b mb-10">
-          <div className="border-b-2 border-red-600 pb-2">
+          <div
+            className={`pb-2 cursor-pointer ${
+              activeTab === "north" ? "border-b-2 border-red-600" : ""
+            }`}
+            onClick={() => setActiveTab("north")}
+          >
             <a
               href="#"
-              className="text-gray-800 font-semibold flex items-center"
+              onClick={(e) => e.preventDefault()}
+              className={`font-semibold flex items-center ${
+                activeTab === "north"
+                  ? "text-gray-800"
+                  : "text-gray-500 hover:text-gray-800"
+              }`}
             >
               <svg
-                className="w-5 h-5 mr-2 text-red-600"
+                className={`w-5 h-5 mr-2 ${
+                  activeTab === "north" ? "text-red-600" : ""
+                }`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -94,13 +134,25 @@ const Admissions = () => {
               Cơ sở đào tạo phía Bắc (Km10, Nguyễn Trãi, Quận Hà Đông, Hà Nội)
             </a>
           </div>
-          <div className="ml-8 pb-2">
+          <div
+            className={`ml-8 pb-2 cursor-pointer ${
+              activeTab === "south" ? "border-b-2 border-red-600" : ""
+            }`}
+            onClick={() => setActiveTab("south")}
+          >
             <a
               href="#"
-              className="text-gray-500 hover:text-gray-800 font-semibold flex items-center"
+              onClick={(e) => e.preventDefault()}
+              className={`font-semibold flex items-center ${
+                activeTab === "south"
+                  ? "text-gray-800"
+                  : "text-gray-500 hover:text-gray-800"
+              }`}
             >
               <svg
-                className="w-5 h-5 mr-2"
+                className={`w-5 h-5 mr-2 ${
+                  activeTab === "south" ? "text-red-600" : ""
+                }`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
