@@ -4,6 +4,8 @@ import Footer from "./components/layout/Footer";
 import ScrollToTopButton from "./components/ui/ScrollToTopButton";
 import HomePage from "./pages/HomePage";
 import AnnouncementsUniversityPage from "./pages/AnnouncementsUniversityPage";
+import AnnouncementsPostgraduatePage from "./pages/AnnouncementsPostgraduatePage";
+import AnnouncementsOtherPage from "./pages/AnnouncementsOtherPage";
 
 function App() {
   return (
@@ -16,6 +18,14 @@ function App() {
             <Route
               path="/thong-bao/tuyen-sinh-dai-hoc"
               element={<AnnouncementsUniversityPage />}
+            />
+            <Route
+              path="/thong-bao/tuyen-sinh-sau-dai-hoc"
+              element={<AnnouncementsPostgraduatePage />}
+            />
+            <Route
+              path="/thong-bao/tuyen-sinh-khac"
+              element={<AnnouncementsOtherPage />}
             />
           </Routes>
         </main>

@@ -60,7 +60,7 @@ const NavItem = ({
 };
 
 const navLinks = [
-  { title: "Trang chủ", href: "#" },
+  { title: "Trang chủ", href: "/" },
   {
     title: "Giới thiệu",
     hasDropdown: true,
@@ -75,9 +75,12 @@ const navLinks = [
     title: "Thông báo",
     hasDropdown: true,
     dropdownItems: [
-      { title: "Tuyển sinh đại học", href: "#" },
-      { title: "Tuyển sinh sau đại học", href: "#" },
-      { title: "Tuyển sinh khác", href: "#" },
+      { title: "Tuyển sinh đại học", href: "/thong-bao/tuyen-sinh-dai-hoc" },
+      {
+        title: "Tuyển sinh sau đại học",
+        href: "/thong-bao/tuyen-sinh-sau-dai-hoc",
+      },
+      { title: "Tuyển sinh khác", href: "/thong-bao/tuyen-sinh-khac" },
     ],
   },
   {
