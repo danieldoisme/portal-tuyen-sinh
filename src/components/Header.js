@@ -51,17 +51,9 @@ const Header = () => {
             <a href="#" className="flex items-center space-x-2">
               <img
                 className="h-12 w-auto"
-                src="https://placehold.co/100x100/d46464/ffffff?text=LOGO"
-                alt="Logo"
+                src="https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/logo-tuyen-sinh.svg"
+                alt="Logo Học viện Công nghệ Bưu chính Viễn thông"
               />
-              <div className="text-sm">
-                <p className="font-bold text-red-800">
-                  Học viện Công nghệ Bưu chính Viễn thông
-                </p>
-                <p className="font-semibold text-gray-600">
-                  CỔNG THÔNG TIN TUYỂN SINH
-                </p>
-              </div>
             </a>
           </div>
 

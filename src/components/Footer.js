@@ -32,23 +32,34 @@ const Footer = () => {
   return (
     <footer className="bg-gray-100 text-gray-700">
       <div className="py-12 px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-end space-x-2 mb-8">
-          <a
-            href="https://www.facebook.com/ptittuyensinh/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:text-blue-800 transition-colors"
-          >
-            <FacebookIcon />
-          </a>
-          <a
-            href="https://www.youtube.com/@HocvienCongngheBuuchinhVienthong"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-red-600 hover:text-red-800 transition-colors"
-          >
-            <YoutubeIcon />
-          </a>
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <a href="/" aria-label="Trang chủ">
+              <img
+                className="h-10"
+                src="https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/logo-tuyen-sinh.svg"
+                alt="Logo Tuyển sinh PTIT"
+              />
+            </a>
+          </div>
+          <div className="flex space-x-2">
+            <a
+              href="https://www.facebook.com/ptittuyensinh/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800 transition-colors"
+            >
+              <FacebookIcon />
+            </a>
+            <a
+              href="https://www.youtube.com/@HocvienCongngheBuuchinhVienthong"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-red-600 hover:text-red-800 transition-colors"
+            >
+              <YoutubeIcon />
+            </a>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

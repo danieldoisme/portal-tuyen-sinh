@@ -17,16 +17,11 @@ const ArrowRightIcon = () => (
 
 const Banner = () => {
   return (
-    <div
-      className="relative bg-cover bg-center text-center text-gray-800"
-      style={{
-        backgroundImage: "url('/images/black_dots_oval_background.jpg')",
-      }}
-    >
+    <div className="relative bg-cover bg-center text-center text-gray-800">
       <div
         className="absolute inset-0 backdrop-blur-sm"
         style={{
-          backgroundColor: "rgba(255, 255, 255, 0.9)",
+          backgroundColor: "rgb(255, 255, 255)",
           backgroundImage:
             "radial-gradient(ellipse at center, rgba(239, 68, 68, 0.15) 0%, transparent 70%)",
         }}

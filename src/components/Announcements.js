@@ -240,6 +240,7 @@ const Announcements = () => {
                 transform: `translateX(-${
                   (currentIndex / announcements.length) * 100
                 }%)`,
+                marginBottom: "2rem",
               }}
             >
               {announcements.map((item, index) => (

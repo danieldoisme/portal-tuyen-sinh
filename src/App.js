@@ -4,6 +4,7 @@ import ScrollToTopButton from "./components/ScrollToTopButton";
 import Banner from "./components/Banner";
 import Admissions from "./components/Admissions";
 import Announcements from "./components/Announcements";
+import CallToAction from "./components/CallToAction";
 
 function App() {
   return (
@@ -16,15 +17,15 @@ function App() {
         {/* Placeholder for content */}
         <div className="p-8">
           <h1 className="text-2xl font-bold">Cổng thông tin tuyển sinh</h1>
-
           <div className="h-screen"></div>
           <p>Nội dung trang...</p>
           <div className="h-screen"></div>
         </div>
+
         <Announcements />
+        <CallToAction />
       </main>
       <Footer />
-
       <ScrollToTopButton />
     </div>
   );
