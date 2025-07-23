@@ -91,8 +91,8 @@ const navLinks = [
     title: "Tin tức",
     hasDropdown: true,
     dropdownItems: [
-      { title: "Thông tin báo chí", href: "#" },
-      { title: "Hoạt động & Sự kiện", href: "#" },
+      { title: "Thông tin báo chí", href: "/tin-tuc/thong-tin-bao-chi" },
+      { title: "Hoạt động & Sự kiện", href: "/tin-tuc/hoat-dong-su-kien" },
     ],
   },
   {

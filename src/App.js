@@ -6,6 +6,8 @@ import HomePage from "./pages/HomePage";
 import AnnouncementsUniversityPage from "./pages/AnnouncementsUniversityPage";
 import AnnouncementsPostgraduatePage from "./pages/AnnouncementsPostgraduatePage";
 import AnnouncementsOtherPage from "./pages/AnnouncementsOtherPage";
+import NewsPressPage from "./pages/NewsPressPage";
+import NewsEventsPage from "./pages/NewsEventsPage";
 
 function App() {
   return (
@@ -26,6 +28,14 @@ function App() {
             <Route
               path="/thong-bao/tuyen-sinh-khac"
               element={<AnnouncementsOtherPage />}
+            />
+            <Route
+              path="/tin-tuc/thong-tin-bao-chi"
+              element={<NewsPressPage />}
+            />
+            <Route
+              path="/tin-tuc/hoat-dong-su-kien"
+              element={<NewsEventsPage />}
             />
           </Routes>
         </main>
