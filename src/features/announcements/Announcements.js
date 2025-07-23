@@ -4,71 +4,83 @@ import AnnouncementCard from "./AnnouncementCard";
 const mockData = {
   university: [
     {
-      image: "https://placehold.co/400x250/e2e8f0/4a5568?text=Tin+Tuc+1",
+      image:
+        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
       date: "24/06/2025",
       title:
         "Về việc điều chỉnh thời gian đăng ký thông tin xét tuyển trực tuyến cho thí sinh đăng ký xét tuyển vào Đại học chính quy năm 2025",
     },
     {
-      image: "https://placehold.co/400x250/e2e8f0/4a5568?text=Tin+Tuc+2",
+      image:
+        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
       date: "06/06/2025",
       title:
         "Thông báo Kết quả xét tuyển thẳng và UTXT vào Đại học chính quy năm 2025",
     },
     {
-      image: "https://placehold.co/400x250/e2e8f0/4a5568?text=Tin+Tuc+3",
+      image:
+        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
       date: "04/06/2025",
       title:
         "Về việc điều chỉnh thời gian đăng ký thông tin xét tuyển trực tuyến cho thí sinh đăng ký xét tuyển vào Đại học chính quy năm 2025",
     },
     {
-      image: "https://placehold.co/400x250/e2e8f0/4a5568?text=Tin+Tuc+4",
+      image:
+        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
       date: "01/06/2025",
       title: "Thông báo tuyển sinh liên thông đại học năm 2025",
     },
     {
-      image: "https://placehold.co/400x250/e2e8f0/4a5568?text=Tin+Tuc+5",
+      image:
+        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
       date: "28/05/2025",
       title: "Lịch thi tuyển sinh đại học đợt 2 - Hình thức trực tuyến",
     },
   ],
   postgraduate: [
     {
-      image: "https://placehold.co/400x250/e2e8f0/4a5568?text=Sau+DH+1",
+      image:
+        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
       date: "15/06/2025",
       title: "Thông báo tuyển sinh Thạc sĩ ngành Quản trị kinh doanh",
     },
     {
-      image: "https://placehold.co/400x250/e2e8f0/4a5568?text=Sau+DH+2",
+      image:
+        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
       date: "10/06/2025",
       title: "Hội thảo giới thiệu chương trình đào tạo Tiến sĩ CNTT",
     },
     {
-      image: "https://placehold.co/400x250/e2e8f0/4a5568?text=Sau+DH+3",
+      image:
+        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
       date: "27/06/2025",
       title: "Thông báo tuyển sinh trình độ Tiến sĩ đợt 1 năm 2025",
     },
   ],
   other: [
     {
-      image: "https://placehold.co/400x250/e2e8f0/4a5568?text=Khac+1",
+      image:
+        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
       date: "20/06/2025",
       title:
         "Thông báo điểm chuẩn xét trúng tuyển và Quyết định phê duyệt danh sách thí sinh trúng tuyển Đại học theo hình thức Giáo dục từ xa đợt 3 năm 2025",
     },
     {
-      image: "https://placehold.co/400x250/e2e8f0/4a5568?text=Khac+2",
+      image:
+        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
       date: "20/06/2025",
       title: "Thông báo về các khóa học ngắn hạn cấp chứng chỉ",
     },
     {
-      image: "https://placehold.co/400x250/e2e8f0/4a5568?text=Khac+3",
+      image:
+        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
       date: "20/06/2025",
       title:
         "Thông báo điểm chuẩn xét trúng tuyển Đại học theo hình thức GDTX đợt 1 năm 2025 và QĐ phê duyệt danh sách trúng tuyển",
     },
     {
-      image: "https://placehold.co/400x250/e2e8f0/4a5568?text=Khac+4",
+      image:
+        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
       date: "20/06/2025",
       title:
         "Thông báo điểm chuẩn xét trúng tuyển Đại học theo hình thức GDTX đợt 2 năm 2025 và QĐ phê duyệt danh sách trúng tuyển",
