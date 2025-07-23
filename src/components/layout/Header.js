@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const ArrowDownIcon = () => (
   <svg
@@ -40,18 +41,20 @@ const NavItem = ({
         {hasDropdown && <ArrowDownIcon />}
       </a>
       {hasDropdown && isDropdownOpen && (
-        <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-md shadow-lg z-20 ring-1 ring-black ring-opacity-5">
-          <div className="py-1" role="menu" aria-orientation="vertical">
-            {dropdownItems.map((item, index) => (
-              <a
-                key={index}
-                href={item.href}
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600"
-                role="menuitem"
-              >
-                {item.title}
-              </a>
-            ))}
+        <div className="absolute top-full left-0 pt-2 w-56 bg-transparent">
+          <div className="bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
+            <div className="py-1" role="menu" aria-orientation="vertical">
+              {dropdownItems.map((item, index) => (
+                <a
+                  key={index}
+                  href={item.href}
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600"
+                  role="menuitem"
+                >
+                  {item.title}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -82,6 +85,7 @@ const navLinks = [
       },
       { title: "Tuyển sinh khác", href: "/thong-bao/tuyen-sinh-khac" },
     ],
+    basePath: "/thong-bao",
   },
   {
     title: "Tin tức",
@@ -108,7 +112,8 @@ const navLinks = [
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setSticky] = useState(false);
-  const [activeItem, setActiveItem] = useState(false);
+  const [activeItem, setActiveItem] = useState("");
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -122,9 +127,26 @@ const Header = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const currentPath = location.pathname;
+    const activeLink = navLinks.find(
+      (link) =>
+        (link.basePath && currentPath.startsWith(link.basePath)) ||
+        link.href === currentPath
+    );
+
+    if (activeLink) {
+      setActiveItem(activeLink.title);
+    } else {
+      setActiveItem("");
+    }
+  }, [location]);
+
   return (
     <header
-      className={`bg-white shadow-sm ${isSticky ? "sticky top-0 z-50" : ""}`}
+      className={`bg-white shadow-sm relative z-30 ${
+        isSticky ? "sticky top-0 z-50" : ""
+      }`}
     >
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -143,6 +165,7 @@ const Header = () => {
               {navLinks.map((link) => (
                 <NavItem
                   key={link.title}
+                  href={link.href}
                   hasDropdown={link.hasDropdown}
                   dropdownItems={link.dropdownItems}
                   isActive={activeItem === link.title}
@@ -190,6 +213,7 @@ const Header = () => {
             {navLinks.map((link) => (
               <NavItem
                 key={link.title}
+                href={link.href}
                 hasDropdown={link.hasDropdown}
                 dropdownItems={link.dropdownItems}
                 isActive={activeItem === link.title}
