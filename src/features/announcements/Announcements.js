@@ -4,20 +4,47 @@ import AnnouncementCard from "./AnnouncementCard";
 const mockData = {
   university: [
     {
+      slug: "bang-quy-doi-tuong-duong-diem-trung-tuyen-2025",
+      image:
+        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
+      date: "23/07/2025",
+      title:
+        "Bảng quy đổi tương đương điểm trúng tuyển giữa các phương thức xét tuyển đại học hệ chính quy đợt 1 năm 2025",
+    },
+    {
+      slug: "nguong-dam-bao-chat-luong-dau-vao-2025",
+      image:
+        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
+      date: "21/07/2025",
+      title:
+        "Ngưỡng đảm bảo chất lượng đầu vào trình độ đại học hệ chính quy đợt 1 năm 2025",
+    },
+    {
+      slug: "ve-viec-dang-ky-nguyen-vong-xet-tuyen-2025",
+      image:
+        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
+      date: "14/07/2025",
+      title:
+        "Về việc đăng ký nguyện vọng xét tuyển đại học chính quy trên Hệ thống hỗ trợ tuyển sinh chung của Bộ Giáo dục và Đào tạo",
+    },
+    {
+      slug: "ket-qua-xet-tuyen-thang-va-utxt-2025",
       image:
         "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
       date: "24/06/2025",
       title:
-        "Về việc điều chỉnh thời gian đăng ký thông tin xét tuyển trực tuyến cho thí sinh đăng ký xét tuyển vào Đại học chính quy năm 2025",
+        "Kết quả xét tuyển thẳng và Ưu tiên xét tuyển vào đại học chính quy năm 2025",
     },
     {
+      slug: "dieu-chinh-thoi-gian-dang-ky-xet-tuyen-2025",
       image:
         "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-      date: "06/06/2025",
+      date: "28/05/2025",
       title:
-        "Thông báo Kết quả xét tuyển thẳng và UTXT vào Đại học chính quy năm 2025",
+        "Sửa đổi, bổ sung một số nội dung của Đề án tuyển sinh và thông báo tuyển sinh đại học hệ chính quy năm 2025",
     },
     {
+      slug: "thong-bao-mo-he-thong-xet-tuyen-2025",
       image:
         "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
       date: "04/06/2025",
@@ -25,16 +52,11 @@ const mockData = {
         "Về việc điều chỉnh thời gian đăng ký thông tin xét tuyển trực tuyến cho thí sinh đăng ký xét tuyển vào Đại học chính quy năm 2025",
     },
     {
+      slug: "sua-doi-bo-sung-de-an-tuyen-sinh-2025",
       image:
         "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-      date: "01/06/2025",
-      title: "Thông báo tuyển sinh liên thông đại học năm 2025",
-    },
-    {
-      image:
-        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-      date: "28/05/2025",
-      title: "Lịch thi tuyển sinh đại học đợt 2 - Hình thức trực tuyến",
+      date: "20/05/2025",
+      title: "Thông báo tuyển sinh Đại học hệ chính quy năm 2025 (Dự kiến)",
     },
   ],
   postgraduate: [
@@ -262,9 +284,11 @@ const Announcements = () => {
                   style={{ width: `${100 / announcements.length}%` }}
                 >
                   <AnnouncementCard
+                    key={item.slug}
                     image={item.image}
                     date={item.date}
                     title={item.title}
+                    href={`/thong-bao/tuyen-sinh-dai-hoc/${item.slug}`}
                   />
                 </div>
               ))}

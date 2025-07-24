@@ -10,6 +10,7 @@ import AnnouncementDetailPage from "./pages/AnnouncementDetailPage";
 import NewsPressPage from "./pages/NewsPressPage";
 import NewsEventsPage from "./pages/NewsEventsPage";
 import NewsDetailPage from "./pages/NewsDetailPage";
+import AdmissionLookupPage from "./pages/AdmissionLookupPage";
 
 function App() {
   return (
@@ -46,6 +47,10 @@ function App() {
             <Route
               path="/tin-tuc/hoat-dong-su-kien"
               element={<NewsEventsPage />}
+            />
+            <Route
+              path="/tra-cuu-tuyen-sinh"
+              element={<AdmissionLookupPage />}
             />
           </Routes>
         </main>

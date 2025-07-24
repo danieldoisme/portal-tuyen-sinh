@@ -109,7 +109,7 @@ const navLinks = [
     ],
     basePath: "/de-an-tuyen-sinh",
   },
-  { title: "Tra cứu tuyển sinh", href: "#" },
+  { title: "Tra cứu tuyển sinh", href: "/tra-cuu-tuyen-sinh" },
 ];
 
 const Header = () => {
