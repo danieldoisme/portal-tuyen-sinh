@@ -13,10 +13,10 @@ const CalendarIcon = () => (
   </svg>
 );
 
-const AnnouncementCard = ({ image, date, title }) => {
+const AnnouncementCard = ({ image, date, title, href = "#" }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden group transition-shadow duration-300 hover:shadow-xl">
-      <a href="#" className="block">
+      <a href={href} className="block">
         <img className="w-full h-48 object-cover" src={image} alt={title} />
         <div className="p-6">
           <div className="flex items-center text-sm text-gray-500 mb-3">

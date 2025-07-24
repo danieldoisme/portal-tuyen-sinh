@@ -73,6 +73,7 @@ const navLinks = [
       { title: "Chính sách học bổng", href: "#" },
       { title: "Câu hỏi thường gặp", href: "#" },
     ],
+    basePath: "/gioi-thieu",
   },
   {
     title: "Thông báo",
@@ -94,6 +95,7 @@ const navLinks = [
       { title: "Thông tin báo chí", href: "/tin-tuc/thong-tin-bao-chi" },
       { title: "Hoạt động & Sự kiện", href: "/tin-tuc/hoat-dong-su-kien" },
     ],
+    basePath: "/tin-tuc",
   },
   {
     title: "Đề án tuyển sinh",
@@ -105,6 +107,7 @@ const navLinks = [
       { title: "Đề án tuyển sinh năm 2022", href: "#" },
       { title: "Đề án tuyển sinh năm 2021", href: "#" },
     ],
+    basePath: "/de-an-tuyen-sinh",
   },
   { title: "Tra cứu tuyển sinh", href: "#" },
 ];

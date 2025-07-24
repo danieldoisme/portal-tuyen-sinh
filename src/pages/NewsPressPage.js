@@ -3,6 +3,7 @@ import AnnouncementCard from "../features/announcements/AnnouncementCard";
 
 const pressNewsData = [
   {
+    slug: "chuyen-gia-du-bao-diem-chuan-cu-nhan-quan-he-cong-chung-ptit",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/06/anhDaiDien-1719296164585-gdvn_logo_3-1.png",
     date: "29/06/2024",
@@ -10,6 +11,7 @@ const pressNewsData = [
       "Chuyên gia dự báo điểm chuẩn chương trình Cử nhân Quan hệ công chúng - PTIT",
   },
   {
+    slug: "chuong-trinh-dao-tao-quan-he-cong-chung-tai-ptit-co-gi-khac-biet",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715841649173-logo_vnmedia_tchi_dtu_28_3_01_2.png",
     date: "25/06/2024",
@@ -17,6 +19,7 @@ const pressNewsData = [
       "Chương trình đào tạo Quan hệ công chúng tại Học viện Công nghệ Bưu chính Viễn thông có gì khác biệt?",
   },
   {
+    slug: "hoc-vien-co-them-4-nganh-dat-kiem-dinh-chat-luong",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715841846431-logo_ictvietnam.vn_.png",
     date: "25/06/2024",
@@ -24,24 +27,28 @@ const pressNewsData = [
       "Học viện Công nghệ Bưu chính Viễn thông có thêm 4 ngành đạt kiểm định chất lượng",
   },
   {
+    slug: "hoc-bong-theo-dinh-huong-cong-nghe-so-tai-ptit",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/06/anhDaiDien-1719296164585-gdvn_logo_3-1.png",
     date: "25/06/2024",
     title: "Học bổng theo định hướng công nghệ số tại PTIT",
   },
   {
+    slug: "chuong-trinh-dao-tao-quan-he-cong-chung-tai-ptit-co-gi-khac-biet",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/06/anhDaiDien-1719296164585-gdvn_logo_3-1.png",
     date: "03/06/2024",
     title: "Chương trình đào tạo Quan hệ công chúng tại PTIT có gì khác biệt?",
   },
   {
+    slug: "co-hoi-rong-mo-con-duong-du-hoc-va-nghe-nghiep-quoc-te",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715841649173-logo_vnmedia_tchi_dtu_28_3_01_2.png",
     date: "03/06/2024",
     title: "Cơ hội rộng mở con đường du học và nghề nghiệp quốc tế",
   },
   {
+    slug: "sinh-vien-ptit-gianh-suat-sang-my-thi-thiet-ke-do-hoa-the-gioi-2024",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715841649173-logo_vnmedia_tchi_dtu_28_3_01_2.png",
     date: "03/06/2024",
@@ -49,30 +56,35 @@ const pressNewsData = [
       "Sinh viên PTIT giành suất sang Mỹ thi thiết kế đồ họa thế giới 2024",
   },
   {
+    slug: "ptit-dong-hanh-cung-sinh-vien-trong-chuyen-thi-tot-nghiep-thpt",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715841846431-logo_ictvietnam.vn_.png",
     date: "24/05/2024",
     title: "PTIT mở cổng thông tin cung cấp hơn 41.000 cơ hội việc làm",
   },
   {
+    slug: "nhung-nganh-hoc-giup-kiem-trieu-view-tren-mang-xa-hoi",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715841846431-logo_ictvietnam.vn_.png",
     date: "24/05/2024",
     title: "Những ngành học giúp kiếm “triệu view” trên mạng xã hội",
   },
   {
+    slug: "thuc-trang-va-giai-phap-nang-cao-chat-luong-dao-tao-nganh-cong-nghe-thong-tin",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715841649173-logo_vnmedia_tchi_dtu_28_3_01_2.png",
     date: "22/05/2024",
     title: "Thế hệ gen Z hào hứng với những ngành học “hot trend”",
   },
   {
+    slug: "no-luc-giai-con-khat-nhan-luc-nganh-game",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/06/anhDaiDien-1719296164585-gdvn_logo_3-1.png",
     date: "20/05/2024",
     title: "Nỗ lực giải “cơn khát” nhân lực ngành game",
   },
   {
+    slug: "tang-nang-luc-toan-cau-cho-nhan-luc-so-qua-trao-doi-sinh-vien-quoc-te",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715841649173-logo_vnmedia_tchi_dtu_28_3_01_2.png",
     date: "20/05/2024",
@@ -189,10 +201,11 @@ const NewsPressPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {selectedData.map((item, index) => (
             <AnnouncementCard
-              key={startIndex + index}
+              key={item.slug}
               image={item.image}
               date={item.date}
               title={item.title}
+              href={`/tin-tuc/thong-tin-bao-chi/${item.slug}`}
             />
           ))}
         </div>

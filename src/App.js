@@ -6,8 +6,10 @@ import HomePage from "./pages/HomePage";
 import AnnouncementsUniversityPage from "./pages/AnnouncementsUniversityPage";
 import AnnouncementsPostgraduatePage from "./pages/AnnouncementsPostgraduatePage";
 import AnnouncementsOtherPage from "./pages/AnnouncementsOtherPage";
+import AnnouncementDetailPage from "./pages/AnnouncementDetailPage";
 import NewsPressPage from "./pages/NewsPressPage";
 import NewsEventsPage from "./pages/NewsEventsPage";
+import NewsDetailPage from "./pages/NewsDetailPage";
 
 function App() {
   return (
@@ -17,6 +19,10 @@ function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route
+              path="/thong-bao/tuyen-sinh-dai-hoc/:slug"
+              element={<AnnouncementDetailPage />}
+            />
             <Route
               path="/thong-bao/tuyen-sinh-dai-hoc"
               element={<AnnouncementsUniversityPage />}
@@ -28,6 +34,10 @@ function App() {
             <Route
               path="/thong-bao/tuyen-sinh-khac"
               element={<AnnouncementsOtherPage />}
+            />
+            <Route
+              path="/tin-tuc/thong-tin-bao-chi/:slug"
+              element={<NewsDetailPage />}
             />
             <Route
               path="/tin-tuc/thong-tin-bao-chi"

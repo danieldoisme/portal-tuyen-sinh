@@ -3,6 +3,7 @@ import AnnouncementCard from "../features/announcements/AnnouncementCard";
 
 const universityAdmissionsData = [
   {
+    slug: "bang-quy-doi-tuong-duong-diem-trung-tuyen-2025",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
     date: "23/07/2025",
@@ -10,6 +11,7 @@ const universityAdmissionsData = [
       "Bảng quy đổi tương đương điểm trúng tuyển giữa các phương thức xét tuyển đại học hệ chính quy đợt 1 năm 2025",
   },
   {
+    slug: "nguong-dam-bao-chat-luong-dau-vao-2025",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
     date: "21/07/2025",
@@ -17,6 +19,7 @@ const universityAdmissionsData = [
       "Ngưỡng đảm bảo chất lượng đầu vào trình độ đại học hệ chính quy đợt 1 năm 2025",
   },
   {
+    slug: "ve-viec-dang-ky-nguyen-vong-xet-tuyen-2025",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
     date: "14/07/2025",
@@ -24,6 +27,7 @@ const universityAdmissionsData = [
       "Về việc đăng ký nguyện vọng xét tuyển đại học chính quy trên Hệ thống hỗ trợ tuyển sinh chung của Bộ Giáo dục và Đào tạo",
   },
   {
+    slug: "ket-qua-xet-tuyen-thang-va-utxt-2025",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
     date: "24/06/2025",
@@ -31,6 +35,7 @@ const universityAdmissionsData = [
       "Kết quả xét tuyển thẳng và Ưu tiên xét tuyển vào đại học chính quy năm 2025",
   },
   {
+    slug: "dieu-chinh-thoi-gian-dang-ky-xet-tuyen-2025",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
     date: "28/05/2025",
@@ -38,6 +43,7 @@ const universityAdmissionsData = [
       "Sửa đổi, bổ sung một số nội dung của Đề án tuyển sinh và thông báo tuyển sinh đại học hệ chính quy năm 2025",
   },
   {
+    slug: "thong-bao-mo-he-thong-xet-tuyen-2025",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
     date: "04/06/2025",
@@ -45,12 +51,14 @@ const universityAdmissionsData = [
       "Về việc điều chỉnh thời gian đăng ký thông tin xét tuyển trực tuyến cho thí sinh đăng ký xét tuyển vào Đại học chính quy năm 2025",
   },
   {
+    slug: "sua-doi-bo-sung-de-an-tuyen-sinh-2025",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
     date: "20/05/2025",
     title: "Thông báo tuyển sinh Đại học hệ chính quy năm 2025 (Dự kiến)",
   },
   {
+    slug: "thong-bao-mo-he-thong-xet-tuyen-2025",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
     date: "15/05/2025",
@@ -58,6 +66,7 @@ const universityAdmissionsData = [
       "Thông tin tuyển sinh các chương trình Chất lượng cao trình độ đại học năm 2025",
   },
   {
+    slug: "huong-dan-dang-ky-xet-tuyen-ket-hop-2025",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
     date: "10/05/2025",
@@ -65,6 +74,7 @@ const universityAdmissionsData = [
       "Hướng dẫn đăng ký xét tuyển kết hợp và xét tuyển dựa vào kết quả bài thi đánh giá năng lực, đánh giá tư duy năm 2025",
   },
   {
+    slug: "thong-bao-nguong-diem-nhan-ho-so-xet-tuyen",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
     date: "05/05/2025",
@@ -72,6 +82,7 @@ const universityAdmissionsData = [
       "Thông báo ngưỡng điểm nhận hồ sơ xét tuyển các phương thức (trừ phương thức thi tốt nghiệp THPT)",
   },
   {
+    slug: "thong-bao-thi-cap-chung-chi-tieng-anh-pte-academic",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
     date: "01/05/2025",
@@ -79,6 +90,7 @@ const universityAdmissionsData = [
       "Thông báo về việc tổ chức thi cấp Chứng chỉ tiếng Anh quốc tế PTE Academic",
   },
   {
+    slug: "thong-bao-tuyen-sinh-lien-thong-cao-dang",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
     date: "25/04/2025",
@@ -86,12 +98,14 @@ const universityAdmissionsData = [
       "Thông báo tuyển sinh liên thông từ trình độ cao đẳng lên trình độ đại học năm 2025",
   },
   {
+    slug: "thong-bao-tuyen-sinh-dai-hoc-van-bang-2",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
     date: "20/04/2025",
     title: "Thông báo tuyển sinh đại học văn bằng 2, hệ chính quy năm 2025",
   },
   {
+    slug: "chinh-sach-hoc-bong-ho-tro-tai-chinh-2025-2026",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
     date: "15/04/2025",
@@ -99,6 +113,7 @@ const universityAdmissionsData = [
       "Chính sách học bổng và hỗ trợ tài chính cho sinh viên năm học 2025-2026",
   },
   {
+    slug: "ngay-hoi-tu-van-tuyen-sinh-huong-nghiep-ptit-2025",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
     date: "10/04/2025",
@@ -214,10 +229,11 @@ const AnnouncementsUniversityPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {selectedData.map((item, index) => (
             <AnnouncementCard
-              key={startIndex + index}
+              key={item.slug}
               image={item.image}
               date={item.date}
               title={item.title}
+              href={`/thong-bao/tuyen-sinh-dai-hoc/${item.slug}`}
             />
           ))}
         </div>
