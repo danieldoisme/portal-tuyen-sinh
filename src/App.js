@@ -18,6 +18,8 @@ import NewsDetailPage from "./pages/NewsDetailPage";
 import AdmissionLookupPage from "./pages/AdmissionLookupPage";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
+import AdminStudentApplicationsPage from "./pages/AdminStudentApplicationsPage";
+import AdminPostCreationPage from "./pages/AdminPostCreationPage";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -60,6 +62,14 @@ const AppLayout = () => {
           <Route path="/tra-cuu-tuyen-sinh" element={<AdmissionLookupPage />} />
           <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+          <Route
+            path="/admin/applications"
+            element={<AdminStudentApplicationsPage />}
+          />
+          <Route
+            path="/admin/create-post"
+            element={<AdminPostCreationPage />}
+          />
         </Routes>
       </main>
       {!isAdminRoute && <Footer />}
