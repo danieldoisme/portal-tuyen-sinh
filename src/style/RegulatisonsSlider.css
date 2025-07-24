@@ -1,0 +1,119 @@
+/* Section Header - Added */
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-line {
+  width: 3rem;
+  height: 3px;
+  background-color: #dc2626;
+  margin: 0 auto 1rem;
+}
+
+.section-subtitle {
+  color: #dc2626;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+/* Original styles - Keep everything the same */
+.slider-container-horizontal {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.slider-title {
+  text-align: center;
+  color: #1e293b;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 30px 0;
+}
+
+.regulations-slider-horizontal {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  cursor: grab;
+  user-select: none;
+  padding: 20px 0;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.regulations-slider-horizontal::-webkit-scrollbar {
+  display: none;
+}
+
+.regulations-slider-horizontal.active {
+  cursor: grabbing;
+}
+
+.regulation-card-horizontal {
+  flex: 0 0 calc(33.33% - 30px);
+  background-color: #fff;
+  border: 1px solid #fee2e2;
+  border-radius: 12px;
+  padding: 25px;
+  margin: 0 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: auto;           
+  min-height: 280px;
+}
+
+.regulation-card-horizontal:hover {
+  transform: translateY(-4px);
+}
+
+.regulation-card-horizontal h3 {
+  color: #0d2a57;
+  font-size: 1.2rem;
+  margin: 15px 0 10px;
+}
+
+.regulation-card-horizontal p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  flex-grow: 1;
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
+  display: block;
+}
+
+/* Icon */
+.card-icon {
+  width: 70px;
+  height: 70px;
+  background-color: #fef2f2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.card-icon img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #ef4444;
+}
