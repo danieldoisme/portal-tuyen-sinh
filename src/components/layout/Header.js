@@ -154,7 +154,7 @@ const Header = () => {
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
-            <a href="#" className="flex items-center space-x-2">
+            <a href="/" className="flex items-center space-x-2">
               <img
                 className="h-12 w-auto"
                 src="https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/logo-tuyen-sinh.svg"

@@ -40,14 +40,18 @@ const Banner = () => {
           </p>
           <div className="flex justify-center items-center space-x-4">
             <a
-              href="#"
+              href="/documents/cam-nang-tuyen-sinh-2025.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-red-700 text-white font-semibold px-6 py-3 rounded-md hover:bg-red-800 transition duration-300 ease-in-out flex items-center"
             >
               Cẩm nang Tuyển sinh đại học 2025
               <ArrowRightIcon />
             </a>
             <a
-              href="#"
+              href="/documents/huong-dan-dkxt.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-red-700 text-white font-semibold px-6 py-3 rounded-md hover:bg-red-800 transition duration-300 ease-in-out flex items-center"
             >
               Hướng dẫn ĐKXT
