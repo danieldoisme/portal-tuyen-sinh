@@ -132,8 +132,10 @@ const Header = () => {
 
   const handleNavigation = (path) => {
     navigate(path);
-    setActiveDropdown(null);
-    setIsMenuOpen(false);
+    setTimeout(() => {
+      setActiveDropdown(null);
+      setIsMenuOpen(false);
+    }, 100);
   };
 
   useEffect(() => {
@@ -156,7 +158,11 @@ const Header = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (
+        window.innerWidth >= 768 &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
         setActiveDropdown(null);
       }
     };
@@ -238,8 +244,9 @@ const Header = () => {
         </div>
       </div>
 
+      {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden">
+        <div className="md:hidden absolute top-20 left-0 w-full bg-white shadow-lg z-40">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((link) => (
               <div key={link.title}>
