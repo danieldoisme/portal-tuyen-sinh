@@ -21,27 +21,17 @@ import AdminDashboardPage from "./pages/AdminDashboardPage";
 import AdminStudentApplicationsPage from "./pages/AdminStudentApplicationsPage";
 import AdminPostCreationPage from "./pages/AdminPostCreationPage";
 
-
-import AnnouncementsUniversityPage from "./pages/AnnouncementsUniversityPage";
-import AnnouncementsPostgraduatePage from "./pages/AnnouncementsPostgraduatePage";
-import AnnouncementsOtherPage from "./pages/AnnouncementsOtherPage";
-import NewsPressPage from "./pages/NewsPressPage";
-import NewsEventsPage from "./pages/NewsEventsPage";
-
 import TongQuanHocVien from "./pages/gioi-thieu/TongQuanHocVien";
 import ChinhSachHocBong from "./pages/gioi-thieu/ChinhSachHocBong";
 import CauHoiThuongGap from "./pages/gioi-thieu/CauHoiThuongGap";
 import BaCongKhai from "./pages/gioi-thieu/BaCongKhai";
-import DiemTrungTuyen from './pages/gioi-thieu/DiemTrungTuyen';
-import DeAnTuyenSinh from './pages/de-an-tuyen-sinh/DeAnTuyenSinh';
+import DiemTrungTuyen from "./pages/gioi-thieu/DiemTrungTuyen";
+import DeAnTuyenSinh from "./pages/de-an-tuyen-sinh/DeAnTuyenSinh";
 
-import LoginPage from "./user/LoginPage.tsx";
-import RegisterPage from "./user/RegisterPage.tsx";
-import NopHoSoTrucTuyen from './pages/nop-ho-so-truc-tuyen/NopHoSoTrucTuyen';
-import ThemHoSo from './pages/nop-ho-so-truc-tuyen/ThemHoSo.js';
-
-
-
+import LoginPage from "./pages/user/LoginPage.tsx";
+import RegisterPage from "./pages/user/RegisterPage.tsx";
+import NopHoSoTrucTuyen from "./pages/nop-ho-so-truc-tuyen/NopHoSoTrucTuyen";
+import ThemHoSo from "./pages/nop-ho-so-truc-tuyen/ThemHoSo.js";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -82,23 +72,27 @@ const AppLayout = () => {
             element={<NewsEventsPage />}
           />
 
-            <Route path="/gioi-thieu/tong-quan" element={<TongQuanHocVien />} />
-            <Route path="/gioi-thieu/ba-cong-khai" element={<BaCongKhai />} />
-            <Route path="/gioi-thieu/chinh-sach-hoc-bong" element={<ChinhSachHocBong />} />
-            <Route path="/gioi-thieu/cau-hoi-thuong-gap" element={<CauHoiThuongGap />} />
-            <Route path="/diem-trung-tuyen/:year" element={<DiemTrungTuyen />} />
+          <Route path="/gioi-thieu/tong-quan" element={<TongQuanHocVien />} />
+          <Route path="/gioi-thieu/ba-cong-khai" element={<BaCongKhai />} />
+          <Route
+            path="/gioi-thieu/chinh-sach-hoc-bong"
+            element={<ChinhSachHocBong />}
+          />
+          <Route
+            path="/gioi-thieu/cau-hoi-thuong-gap"
+            element={<CauHoiThuongGap />}
+          />
+          <Route path="/diem-trung-tuyen/:year" element={<DiemTrungTuyen />} />
 
-            <Route path="/de-an-tuyen-sinh/:year" element={<DeAnTuyenSinh />} />
-         
-            <Route path="/login" element={<LoginPage />} />  
+          <Route path="/de-an-tuyen-sinh/:year" element={<DeAnTuyenSinh />} />
 
-            <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
 
-            <Route path="/nop-ho-so" element={<NopHoSoTrucTuyen />} />
+          <Route path="/register" element={<RegisterPage />} />
 
-            <Route path="/nop-ho-so/xet-tuyen" element={<ThemHoSo />} />
-   
+          <Route path="/nop-ho-so" element={<NopHoSoTrucTuyen />} />
 
+          <Route path="/nop-ho-so/xet-tuyen" element={<ThemHoSo />} />
 
           <Route path="/tra-cuu-tuyen-sinh" element={<AdmissionLookupPage />} />
           <Route path="/admin/login" element={<AdminLoginPage />} />
