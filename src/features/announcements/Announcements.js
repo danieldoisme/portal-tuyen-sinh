@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import AnnouncementCard from "./AnnouncementCard";
+import AnnouncementCard from "./components/AnnouncementCard";
 
 const mockData = {
   university: [
@@ -210,7 +210,7 @@ const Announcements = () => {
   );
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-white">
       <div className="mx-auto px-4">
         <div className="text-center mb-12">
           <p className="text-red-700 font-semibold uppercase tracking-wider">

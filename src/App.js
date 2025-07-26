@@ -4,34 +4,34 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import Header from "./components/layout/Header";
+import NavBar from "./components/layout/NavBar.js";
 import Footer from "./components/layout/Footer";
-import ScrollToTopButton from "./components/ui/ScrollToTopButton";
-import HomePage from "./pages/HomePage";
-import AnnouncementsUniversityPage from "./pages/AnnouncementsUniversityPage";
-import AnnouncementsPostgraduatePage from "./pages/AnnouncementsPostgraduatePage";
-import AnnouncementsOtherPage from "./pages/AnnouncementsOtherPage";
-import AnnouncementDetailPage from "./pages/AnnouncementDetailPage";
-import NewsPressPage from "./pages/NewsPressPage";
-import NewsEventsPage from "./pages/NewsEventsPage";
-import NewsDetailPage from "./pages/NewsDetailPage";
-import AdmissionLookupPage from "./pages/AdmissionLookupPage";
-import AdminLoginPage from "./pages/AdminLoginPage";
-import AdminDashboardPage from "./pages/AdminDashboardPage";
-import AdminStudentApplicationsPage from "./pages/AdminStudentApplicationsPage";
-import AdminPostCreationPage from "./pages/AdminPostCreationPage";
+import ScrollToTopButton from "./components/ui/ScrollToTopButton.js";
+import TrangChu from "./pages/TrangChu.js";
+import AnnouncementsUniversityPage from "./features/announcements/pages/AnnouncementsUniversityPage.js";
+import AnnouncementsPostgraduatePage from "./features/announcements/pages/AnnouncementsPostgraduatePage.js";
+import AnnouncementsOtherPage from "./features/announcements/pages/AnnouncementsOtherPage.js";
+import AnnouncementDetailPage from "./features/announcements/pages/AnnouncementDetailPage.js";
+import NewsPressPage from "./features/news/pages/NewsPressPage.js";
+import NewsEventsPage from "./features/news/pages/NewsEventsPage.js";
+import NewsDetailPage from "./features/news/pages/NewsDetailPage.js";
+import AdmissionLookupPage from "./features/tra-cuu/pages/AdmissionLookupPage.js";
+import AdminLoginPage from "./features/admin/pages/AdminLoginPage.js";
+import AdminDashboardPage from "./features/admin/pages/AdminDashboardPage.js";
+import AdminStudentApplicationsPage from "./features/admin/pages/AdminStudentApplicationsPage";
+import AdminPostCreationPage from "./features/admin/pages/AdminPostCreationPage.js";
 
-import TongQuanHocVien from "./pages/gioi-thieu/TongQuanHocVien";
-import ChinhSachHocBong from "./pages/gioi-thieu/ChinhSachHocBong";
-import CauHoiThuongGap from "./pages/gioi-thieu/CauHoiThuongGap";
-import BaCongKhai from "./pages/gioi-thieu/BaCongKhai";
-import DiemTrungTuyen from "./pages/gioi-thieu/DiemTrungTuyen";
-import DeAnTuyenSinh from "./pages/de-an-tuyen-sinh/DeAnTuyenSinh";
+import TongQuanHocVien from "./features/info/pages/TongQuanHocVien.js";
+import ChinhSachHocBong from "./features/info/pages/ChinhSachHocBong.js";
+import CauHoiThuongGap from "./features/info/pages/CauHoiThuongGap.js";
+import BaCongKhai from "./features/info/pages/BaCongKhai.js";
+import DiemTrungTuyen from "./features/info/pages/DiemTrungTuyen.js";
+import DeAnTuyenSinh from "./features/info/pages/DeAnTuyenSinh.js";
 
-import LoginPage from "./pages/user/LoginPage.tsx";
-import RegisterPage from "./pages/user/RegisterPage.tsx";
-import NopHoSoTrucTuyen from "./pages/nop-ho-so-truc-tuyen/NopHoSoTrucTuyen";
-import ThemHoSo from "./pages/nop-ho-so-truc-tuyen/ThemHoSo.js";
+import LoginPage from "./features/auth/pages/LoginPage.tsx";
+import RegisterPage from "./features/auth/pages/RegisterPage.tsx";
+import NopHoSoTrucTuyen from "./features/application/pages/NopHoSoTrucTuyen.js";
+import ThemHoSo from "./features/application/pages/ThemHoSo.js";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -39,10 +39,10 @@ const AppLayout = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {!isAdminRoute && <Header />}
+      {!isAdminRoute && <NavBar />}
       <main className="flex-grow">
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<TrangChu />} />
           <Route
             path="/thong-bao/tuyen-sinh-dai-hoc/:slug"
             element={<AnnouncementDetailPage />}
