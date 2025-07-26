@@ -73,6 +73,28 @@ const AdminDashboardPage = () => {
             }
           />
 
+          {/* Card mới cho quản lý/xóa bài viết */}
+          <Card
+            to="/admin/posts"
+            title="Quản lý & Xóa bài viết"
+            description="Xem danh sách, mở chi tiết và xóa các bài viết đã đăng."
+            icon={
+              <svg
+                className="w-6 h-6 text-red-700"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            }
+          />
+
           <div className="p-6 bg-white rounded-lg shadow-md">
             <div className="flex items-center mb-4">
               <div className="p-3 bg-gray-100 rounded-full mr-4">

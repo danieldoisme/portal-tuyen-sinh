@@ -20,6 +20,7 @@ import AdminLoginPage from "./features/admin/pages/AdminLoginPage.js";
 import AdminDashboardPage from "./features/admin/pages/AdminDashboardPage.js";
 import AdminStudentApplicationsPage from "./features/admin/pages/AdminStudentApplicationsPage";
 import AdminPostCreationPage from "./features/admin/pages/AdminPostCreationPage.js";
+import AdminPostListPage from "./features/admin/pages/AdminPostListPage";
 
 import TongQuanHocVien from "./features/info/pages/TongQuanHocVien.js";
 import ChinhSachHocBong from "./features/info/pages/ChinhSachHocBong.js";
@@ -105,6 +106,7 @@ const AppLayout = () => {
             path="/admin/create-post"
             element={<AdminPostCreationPage />}
           />
+          <Route path="/admin/posts" element={<AdminPostListPage />} />
         </Routes>
       </main>
       {!isAdminRoute && <Footer />}
