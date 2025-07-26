@@ -1,12 +1,37 @@
-import ptitLogo from "../../assets/icons/ptit-icon.png";
-import { Lock, User, Mail, IdCard } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import ptit from "../../assets/images/ptit.jpg";
+import { Lock, User, Mail } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 const DangKy = () => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: "",
+    confirmEmail: "",
+    cccd: "",
+    confirmCccd: "",
+    password: "",
+    confirmPassword: "",
+    hoDem: "",
+    ten: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO: Thêm logic xác thực (email, cccd, mật khẩu trùng khớp) và gửi dữ liệu đăng ký
+    console.log("Form data submitted:", formData);
+    navigate("/dang-nhap");
+  };
+
   return (
     <div className="flex min-h-screen">
       <div className="w-3/5 relative">
-        <img src={ptitLogo} alt="PTIT" className="w-full h-full object-cover" />
+        <img src={ptit} alt="PTIT" className="w-full h-full object-cover" />
       </div>
 
       <div className="w-2/5 flex items-center justify-center bg-white p-10">
@@ -20,15 +45,19 @@ const DangKy = () => {
             </h1>
           </div>
 
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
               <label className="block text-gray-700 mb-1">Email</label>
               <div className="flex items-center border border-gray-300 rounded px-3 py-2">
                 <Mail className="w-4 h-4 text-gray-400 mr-2" />
                 <input
                   type="email"
+                  name="email"
                   placeholder="Email"
                   className="w-full outline-none"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -39,8 +68,12 @@ const DangKy = () => {
                 <Mail className="w-4 h-4 text-gray-400 mr-2" />
                 <input
                   type="email"
+                  name="confirmEmail"
                   placeholder="Nhập lại Email"
                   className="w-full outline-none"
+                  value={formData.confirmEmail}
+                  onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -50,11 +83,15 @@ const DangKy = () => {
                 Số Căn cước công dân
               </label>
               <div className="flex items-center border border-gray-300 rounded px-3 py-2">
-                <IdCard className="w-4 h-4 text-gray-400 mr-2" />
+                <User className="w-4 h-4 text-gray-400 mr-2" />
                 <input
                   type="text"
+                  name="cccd"
                   placeholder="CCCD"
                   className="w-full outline-none"
+                  value={formData.cccd}
+                  onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -62,11 +99,15 @@ const DangKy = () => {
             <div>
               <label className="block text-gray-700 mb-1">Nhập lại CCCD</label>
               <div className="flex items-center border border-gray-300 rounded px-3 py-2">
-                <IdCard className="w-4 h-4 text-gray-400 mr-2" />
+                <User className="w-4 h-4 text-gray-400 mr-2" />
                 <input
                   type="text"
+                  name="confirmCccd"
                   placeholder="Nhập lại CCCD"
                   className="w-full outline-none"
+                  value={formData.confirmCccd}
+                  onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -77,8 +118,12 @@ const DangKy = () => {
                 <Lock className="w-4 h-4 text-gray-400 mr-2" />
                 <input
                   type="password"
+                  name="password"
                   placeholder="Mật khẩu"
                   className="w-full outline-none"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -91,8 +136,12 @@ const DangKy = () => {
                 <Lock className="w-4 h-4 text-gray-400 mr-2" />
                 <input
                   type="password"
+                  name="confirmPassword"
                   placeholder="Nhập lại mật khẩu"
                   className="w-full outline-none"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -103,8 +152,12 @@ const DangKy = () => {
                 <User className="w-4 h-4 text-gray-400 mr-2" />
                 <input
                   type="text"
+                  name="hoDem"
                   placeholder="Họ đệm"
                   className="w-full outline-none"
+                  value={formData.hoDem}
+                  onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -115,8 +168,12 @@ const DangKy = () => {
                 <User className="w-4 h-4 text-gray-400 mr-2" />
                 <input
                   type="text"
+                  name="ten"
                   placeholder="Tên"
                   className="w-full outline-none"
+                  value={formData.ten}
+                  onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -131,7 +188,7 @@ const DangKy = () => {
             <div className="text-center text-sm mt-4">
               <span className="text-gray-600">
                 Đã có tài khoản?{" "}
-                <Link to="/login" className="text-red-500 hover:underline">
+                <Link to="/dang-nhap" className="text-red-500 hover:underline">
                   Đăng nhập
                 </Link>
               </span>

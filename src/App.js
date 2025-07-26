@@ -25,23 +25,22 @@ import TongQuanHocVien from "./pages/gioi-thieu/TongQuanHocVien.js";
 import ChinhSachHocBong from "./pages/gioi-thieu/ChinhSachHocBong.js";
 import CauHoiThuongGap from "./pages/gioi-thieu/CauHoiThuongGap.js";
 import BaCongKhai from "./pages/gioi-thieu/BaCongKhai.js";
-import DiemTrungTuyen from "./pages/gioi-thieu/DiemTrungTuyen.js";
-import DeAnTuyenSinh from "./pages/gioi-thieu/DeAnTuyenSinh.js";
+import DeAnTuyenSinh from "./pages/de-an-tuyen-sinh/DeAnTuyenSinh.js";
 
-import LoginPage from "./pages/sinh-vien/DangNhap.tsx";
-import RegisterPage from "./pages/sinh-vien/DangKy.tsx";
+import DangNhap from "./pages/sinh-vien/DangNhap.js";
+import DangKy from "./pages/sinh-vien/DangKy.js";
 import NopHoSoTrucTuyen from "./pages/sinh-vien/NopHoSoTrucTuyen.js";
 import ThemHoSo from "./pages/sinh-vien/ThemHoSo.js";
-import DangNhap from "./pages/sinh-vien/DangNhap.tsx";
-import DangKy from "./pages/sinh-vien/DangKy.tsx";
 
 const AppLayout = () => {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith("/admin");
+  const isAuthRoute =
+    location.pathname === "/dang-nhap" || location.pathname === "/dang-ky";
 
   return (
     <div className="flex flex-col min-h-screen">
-      {!isAdminRoute && <NavBar />}
+      {!isAdminRoute && !isAuthRoute && <NavBar />}
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<TrangChu />} />
@@ -75,13 +74,12 @@ const AppLayout = () => {
             path="/gioi-thieu/cau-hoi-thuong-gap"
             element={<CauHoiThuongGap />}
           />
-          <Route path="/diem-trung-tuyen/:year" element={<DiemTrungTuyen />} />
 
           <Route path="/de-an-tuyen-sinh/:year" element={<DeAnTuyenSinh />} />
 
-          <Route path="/login" element={<DangNhap />} />
+          <Route path="/dang-nhap" element={<DangNhap />} />
 
-          <Route path="/register" element={<DangKy />} />
+          <Route path="/dang-ky" element={<DangKy />} />
 
           <Route path="/nop-ho-so" element={<NopHoSoTrucTuyen />} />
 
@@ -100,8 +98,8 @@ const AppLayout = () => {
           />
         </Routes>
       </main>
-      {!isAdminRoute && <Footer />}
-      {!isAdminRoute && <ScrollToTopButton />}
+      {!isAdminRoute && !isAuthRoute && <Footer />}
+      {!isAdminRoute && !isAuthRoute && <ScrollToTopButton />}
     </div>
   );
 };

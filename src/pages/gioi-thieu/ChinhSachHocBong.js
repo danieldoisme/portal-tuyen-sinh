@@ -1,9 +1,6 @@
 import { Home, ChevronRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 const ChinhSachHocBong = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen bg-white">
       <div className="relative bg-[#600909] text-white py-10 overflow-hidden">
@@ -30,8 +27,8 @@ const ChinhSachHocBong = () => {
 
           <div className="text-base text-gray-700 leading-relaxed space-y-4"></div>
           <p>
-            Ngày 06/03/2024, Học viện Công nghệ Bưu chính Viễn (Học viện) đã
-            công bố phương thức tuyển sinh năm 2024. Theo đó, cùng với những
+            Ngày 06/03/2024, Học viện Công nghệ Bưu chính Viễn thông (Học viện)
+            đã công bố phương thức tuyển sinh năm 2024. Theo đó, cùng với những
             thông tin về chỉ tiêu, ngành, chương trình đào tạo, phương thức
             tuyển sinh, Học viện cũng công bố chính sách học bổng đặc biệt dành
             cho các thí sinh trúng tuyển trong kỳ tuyển sinh đại học hệ chính
@@ -39,6 +36,7 @@ const ChinhSachHocBong = () => {
             trị mỗi suất tới 500 triệu đồng cho mỗi thí sinh xuất sắc trúng
             tuyển và nhập học vào Học viện.
           </p>
+          <br />
 
           <p>
             Đối tượng xét cấp học bổng đặc biệt là các thí sinh tham dự kỳ thi
@@ -49,6 +47,7 @@ const ChinhSachHocBong = () => {
             điểm trung bình chung tích lũy năm học liên tục đạt từ loại Giỏi trở
             lên.
           </p>
+          <br />
 
           <p>
             Với học bổng đặc biệt này, thí sinh sẽ được miễn học phí toàn thời
@@ -56,6 +55,14 @@ const ChinhSachHocBong = () => {
             nước ngoài, kinh phí hỗ trợ từ doanh nghiệp đối tác và các hỗ trợ
             khác.
           </p>
+          <br />
+
+          <img
+            src="https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/ptit-phong-hoc-min.png"
+            alt="PTIT"
+          />
+
+          <br />
 
           <p>
             Bên cạnh đó, Học viện tiếp duy trì Học bổng khuyến khích với tổng
@@ -66,6 +73,7 @@ const ChinhSachHocBong = () => {
             với 2 mức: mức 1 miễn 100% và mức 2 miễn 50% học phí trong năm học
             thứ nhất.
           </p>
+          <br />
 
           <p>
             Học viện đã và đang hợp tác với mạng lưới nhiều doanh nghiệp uy tín
@@ -81,6 +89,7 @@ const ChinhSachHocBong = () => {
             doanh nghiệp song hành với thụ hưởng các nguồn học bổng từ các doanh
             nghiệp cũng góp phần thu hút sinh viên giỏi theo học tại Học viện.
           </p>
+          <br />
 
           <p>
             Thu hút thí sinh xuất sắc bằng chính sách học bổng đặc biệt không
@@ -91,6 +100,7 @@ const ChinhSachHocBong = () => {
             nghèo, có hoàn cảnh khó khăn tiếp tục nuôi dưỡng khát vọng nghề
             nghiệp, tự tin chinh phục những tầm cao tri thức mới.
           </p>
+          <br />
 
           <p>
             Trong kỳ tuyển sinh đại học chính quy 2024, Học viện Công nghệ Bưu
@@ -99,6 +109,7 @@ const ChinhSachHocBong = () => {
             tuyển sinh thêm các ngành, chương trình đào tạo mới: Quan hệ công
             chúng; Thiết kế và phát triển game; Công nghệ thông tin Việt - Nhật.
           </p>
+          <br />
 
           <p>
             Mọi thông tin về tuyển sinh đại học chính quy 2024 xem tại:
@@ -106,27 +117,30 @@ const ChinhSachHocBong = () => {
               href="https://ptit.edu.vn"
               target="_blank"
               rel="noopener noreferrer"
+              className="text-red-700 hover:underline"
             >
               {" "}
-              ptit.edu.vn
+              https://ptit.edu.vn
             </a>
             ,
             <a
               href="https://tuyensinh.ptit.edu.vn"
               target="_blank"
               rel="noopener noreferrer"
+              className="text-red-700 hover:underline"
             >
               {" "}
-              tuyensinh.ptit.edu.vn
+              https://tuyensinh.ptit.edu.vn
             </a>
             ,
             <a
               href="https://www.facebook.com/HocvienPTIT/"
               target="_blank"
               rel="noopener noreferrer"
+              className="text-red-700 hover:underline"
             >
               {" "}
-              facebook.com/HocvienPTIT
+              https://facebook.com/HocvienPTIT/
             </a>
           </p>
         </div>

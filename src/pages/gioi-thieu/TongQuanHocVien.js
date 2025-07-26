@@ -1,9 +1,6 @@
 import { Home, ChevronRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 const TongQuanHocVien = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen bg-white">
       <div className="relative bg-[#600909] text-white py-10 overflow-hidden">
@@ -50,7 +47,7 @@ const TongQuanHocVien = () => {
               Với vị thế là đơn vị đào tạo, nghiên cứu trọng điểm, chủ lực của
               Ngành Thông tin và Truyền thông Việt Nam, là trường đại học trọng
               điểm quốc gia trong lĩnh vực ICT, những thành tựu trong gắn kết
-              giữa Nghiên cứu – Đào tạo – Sản xuất kinh doanh năng lực, quy mô
+              giữa Nghiên cứu - Đào tạo - Sản xuất kinh doanh năng lực, quy mô
               phát triển của Học viện hôm nay, Học viện sẽ có những đóng góp
               hiệu quả phục vụ sự phát triển chung của Ngành Thông tin và truyền
               thông và sự nghiệp xây dựng, bảo vệ tổ quốc, góp phần để đất nước,

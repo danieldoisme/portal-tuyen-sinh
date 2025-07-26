@@ -112,9 +112,6 @@ const navLinks = [
     dropdownItems: [
       { title: "Đề án tuyển sinh năm 2025", href: "/de-an-tuyen-sinh/2025" },
       { title: "Đề án tuyển sinh năm 2024", href: "/de-an-tuyen-sinh/2024" },
-      { title: "Đề án tuyển sinh năm 2023", href: "/de-an-tuyen-sinh/2023" },
-      { title: "Đề án tuyển sinh năm 2022", href: "/de-an-tuyen-sinh/2022" },
-      { title: "Đề án tuyển sinh năm 2021", href: "/de-an-tuyen-sinh/2021" },
     ],
     basePath: "/de-an-tuyen-sinh",
   },

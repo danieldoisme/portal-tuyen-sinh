@@ -1,9 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import { Home, ChevronRight } from "lucide-react";
 
 const CauHoiThuongGap = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen bg-white">
       <div className="relative bg-[#600909] text-white py-10 overflow-hidden">

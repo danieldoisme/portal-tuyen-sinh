@@ -1,25 +1,25 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import ptitLogo from "../../assets/icons/ptit-icon.png";
+import { useNavigate } from "react-router-dom";
+import ptit from "../../assets/images/ptit.jpg";
 import { Lock, User } from "lucide-react";
 
 const DangNhap = () => {
   const navigate = useNavigate();
 
-  const handleRegisterClick = (e: React.MouseEvent) => {
+  const handleRegisterClick = (e) => {
     e.preventDefault();
-    navigate("/register");
+    navigate("/dang-ky");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    // TODO: Thêm logic xác thực đăng nhập ở đây
     navigate("/nop-ho-so");
   };
 
   return (
     <div className="flex min-h-screen">
       <div className="w-3/5 relative">
-        <img src={ptitLogo} alt="PTIT" className="w-full h-full object-cover" />
+        <img src={ptit} alt="PTIT" className="w-full h-full object-cover" />
       </div>
 
       <div className="w-2/5 flex items-center justify-center bg-white p-10">
@@ -59,17 +59,16 @@ const DangNhap = () => {
             </div>
 
             <button
-              type="button"
-              onClick={() => navigate("/nop-ho-so")}
+              type="submit"
               className="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded"
             >
               Đăng nhập
             </button>
 
             <div className="text-center text-sm mt-3">
-              <a href="#" className="text-red-500 hover:underline block mb-2">
+              <div className="text-red-500 hover:underline block mb-2">
                 Quên mật khẩu ?
-              </a>
+              </div>
               <span className="text-gray-600">
                 Bạn chưa có tài khoản?{" "}
                 <span

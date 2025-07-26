@@ -1,36 +1,33 @@
-import { useNavigate } from "react-router-dom";
 import { ChevronRight, Home } from "lucide-react";
 
 const data = [
   {
     date: "07/06/2025",
-    title: "Công khai báo cáo thường niên 2023",
+    title: "Công khai báo cáo thường niên 2022 - 2023",
   },
   {
     date: "05/11/2024",
-    title: "THÔNG BÁO: Về việc Công khai thông tin đào tạo năm học 2022-2023",
+    title: "THÔNG BÁO: Về việc Công khai thông tin đào tạo năm học 2022 - 2023",
   },
   {
     date: "03/11/2021",
-    title: "Ba công khai năm học năm 2021-2022",
+    title: "Ba công khai năm học 2021 - 2022",
   },
   {
     date: "03/10/2020",
-    title: "Ba công khai năm học 2020 – 2021",
+    title: "Ba công khai năm học 2020 - 2021",
   },
   {
     date: "22/10/2019",
-    title: "Ba công khai năm học 2019-2020",
+    title: "Ba công khai năm học 2019 - 2020",
   },
   {
     date: "06/10/2018",
-    title: "Ba công khai năm học 2018-2019",
+    title: "Ba công khai năm học 2018 - 2019",
   },
 ];
 
 const BaCongKhai = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="bg-white min-h-screen">
       <div className="relative bg-[#600909] text-white py-10 overflow-hidden">

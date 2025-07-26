@@ -10,22 +10,32 @@ I. THÔNG TIN CHUNG
 
 1. Tên cơ sở đào tạo: HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG
 2. Mã cơ sở đào tạo trong tuyển sinh: BVH và BVS
-3. Địa chỉ các trụ sở:
-- TRỤ SỞ CHÍNH: 122 Hoàng Quốc Việt, Phường Nghĩa Đô, Quận Cầu Giấy, Tp. Hà Nội
-- CƠ SỞ PHÍA BẮC (BVH): Km 10 Đường Nguyễn Trãi, Hà Đông, Hà Nội
-- CƠ SỞ PHÍA NAM (BVS): 11 Nguyễn Đình Chiểu, Quận 1, TP. HCM
-4. Địa chỉ các trang thông tin điện tử:
-- https://ptit.edu.vn
-- https://daotao.ptit.edu.vn
-- https://tuyensinh.ptit.edu.vn
-5. Mạng xã hội:
-- Facebook Tuyển sinh: https://facebook.com/ptittuyensinh
-- Học viện: https://facebook.com/HocvienPTIT
-- Zalo (ID 1260203497642986925)
-6. Liên hệ tuyển sinh:
-- BVH: (024) 33528122, (024) 33512252
-- BVS: (028) 38297220; Fax: (028) 39105510
-7. Công khai đề án, quy chế, thông tin hoạt động: tại các cổng thông tin nêu trên.
+3. Địa chỉ các trụ sở (trụ sở chính và cơ sở đào tạo):
+TRỤ SỞ CHÍNH
+122 Hoàng Quốc Việt, Phường Nghĩa Đô, Quận Cầu Giấy, Tp. Hà Nội
+CƠ SỞ ĐÀO TẠO PHÍA BẮC (BVH)
+Km 10 Đường Nguyễn Trãi, Phường Mộ Lao, Quận Hà Đông, Tp. Hà Nội
+CƠ SỞ ĐÀO TẠO PHÍA NAM (BVS)
+Số 11 Nguyễn Đình Chiểu, Phường ĐaKao, Quận 1, Tp. Hồ Chí Minh
+4. Địa chỉ trang thông tin điện tử:
+Cổng thông tin điện tử: https://ptit.edu.vn
+Cổng thông tin đào tạo: https://daotao.ptit.edu.vn
+Cổng thông tin tuyển sinh: https://tuyensinh.ptit.edu.vn
+Địa chỉ các trang mạng xã hội của cơ sở đào tạo (có thông tin tuyển sinh):
+Trang fanpage tuyển sinh: https://facebook.com/ptittuyensinh
+Trang fanpage Học viện: https://facebook.com/HocvienPTIT
+Trang Zalo: Học viện Công nghệ Bưu chính Viễn thông (ID 1260203497642986925)
+5. Số điện thoại liên hệ tuyển sinh:
+CƠ SỞ ĐÀO TẠO PHÍA BẮC (BVH):
+ĐT: (024) 33528122, (024) 33512252
+CƠ SỞ ĐÀO TẠO PHÍA NAM (BVS)
+ĐT: (028) 38297220; Fax: (028) 39105510
+6. Địa chỉ công khai quy chế tuyển sinh, đề án tuyển sinh:
+Cổng thông tin điện tử: https://ptit.edu.vn
+Cổng thông tin tuyển sinh: https://tuyensinh.ptit.edu.vn
+7. Địa chỉ công khai các thông tin về hoạt động của cơ sở đào tạo:
+Cổng thông tin điện tử: https://ptit.edu.vn
+Cổng thông tin tuyển sinh: https://tuyensinh.ptit.edu.vn
 
 II. TUYỂN SINH ĐÀO TẠO CHÍNH QUY
 
@@ -45,7 +55,7 @@ II. TUYỂN SINH ĐÀO TẠO CHÍNH QUY
 
 3. Ngưỡng đầu vào và quy đổi:
 - PT5: công bố sau khi có kết quả thi THPT
-- PT1–PT4: ngưỡng là điều kiện dự tuyển theo mô tả.
+- PT1-PT4: ngưỡng là điều kiện dự tuyển theo mô tả.
 - Quy đổi điểm: theo hướng dẫn Bộ GD&ĐT, công bố cùng thời điểm với ngưỡng đầu vào.`,
   },
   2024: {
@@ -80,17 +90,8 @@ II. TUYỂN SINH ĐÀO TẠO CHÍNH QUY
 2.2. Phương thức 2 - Xét tuyển kết quả chứng chỉ SAT/ACT
 2.3. Phương thức 3 - Xét tuyển kết quả thi đánh giá năng lực
 2.4. Phương thức 4 - Xét tuyển kết hợp chứng chỉ ngoại ngữ quốc tế
-2.5. Phương thức 5 - Xét tuyển kết quả thi tốt nghiệp THPT 2024
-
-III. TUYỂN SINH ĐÀO TẠO VỪA HỌC VỪA LÀM
-
-IV. TUYỂN SINH ĐÀO TẠO TỪ XA`,
+2.5. Phương thức 5 - Xét tuyển kết quả thi tốt nghiệp THPT 2024`,
   },
-  2023: {},
-  2022: {},
-  2021: {},
-  2020: {},
-  2019: {},
 };
 
 const DeAnTuyenSinh = () => {
