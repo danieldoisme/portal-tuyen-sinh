@@ -1,28 +1,28 @@
-import Admissions from "../features/admissions/ChiTieuTuyenSinh";
-import Announcements from "../features/announcements/Announcements";
+import ChiTieuTuyenSinh from "../components/ChiTieuTuyenSinh";
+import Announcements from "../components/ThongBao";
 import Banner from "../components/layout/Banner";
-import CallToAction from "../components/CallToAction";
+import DangKyXetTuyen from "../components/DangKyXetTuyen";
 
 import ThamGiaXetTuyen from "../components/ThamGiaXetTuyen";
 import QuyTrinhNopHoSo from "../components/QuyTrinhNopHoSo";
 import CotMocTuyenSinh from "../components/CotMocTuyenSinh";
 import QuyCheTuyenSinh from "../components/QuyCheTuyenSinh";
 import PhuongThucXetTuyen from "../components/PhuongThucXetTuyen";
-import FAQSection from "../features/info/components/FAQSection";
+import FAQ from "../components/FAQ";
 
 const TrangChu = () => {
   return (
     <>
       <Banner />
-      <Admissions />
+      <ChiTieuTuyenSinh />
       <ThamGiaXetTuyen />
       <PhuongThucXetTuyen />
       <QuyTrinhNopHoSo />
       <CotMocTuyenSinh />
       <QuyCheTuyenSinh />
       <Announcements />
-      <FAQSection />
-      <CallToAction />
+      <FAQ />
+      <DangKyXetTuyen />
     </>
   );
 };

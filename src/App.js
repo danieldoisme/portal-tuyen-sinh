@@ -8,30 +8,32 @@ import NavBar from "./components/layout/NavBar.js";
 import Footer from "./components/layout/Footer";
 import ScrollToTopButton from "./components/ui/ScrollToTopButton.js";
 import TrangChu from "./pages/TrangChu.js";
-import AnnouncementsUniversityPage from "./features/announcements/pages/AnnouncementsUniversityPage.js";
-import AnnouncementsPostgraduatePage from "./features/announcements/pages/AnnouncementsPostgraduatePage.js";
-import AnnouncementsOtherPage from "./features/announcements/pages/AnnouncementsOtherPage.js";
-import AnnouncementDetailPage from "./features/announcements/pages/AnnouncementDetailPage.js";
-import NewsPressPage from "./features/news/pages/NewsPressPage.js";
-import NewsEventsPage from "./features/news/pages/NewsEventsPage.js";
-import NewsDetailPage from "./features/news/pages/NewsDetailPage.js";
-import AdmissionLookupPage from "./features/tra-cuu/pages/AdmissionLookupPage.js";
-import AdminLoginPage from "./features/admin/pages/AdminLoginPage.js";
-import AdminDashboardPage from "./features/admin/pages/AdminDashboardPage.js";
-import AdminStudentApplicationsPage from "./features/admin/pages/AdminStudentApplicationsPage";
-import AdminPostCreationPage from "./features/admin/pages/AdminPostCreationPage.js";
+import ThongBaoDaiHoc from "./pages/thong-bao/ThongBaoDaiHoc.js";
+import ThongBaoSauDaiHoc from "./pages/thong-bao/ThongBaoSauDaiHoc.js";
+import ThongBaoKhac from "./pages/thong-bao/ThongBaoKhac.js";
+import ThongBaoChiTiet from "./pages/thong-bao/ThongBaoChiTiet.js";
+import TinTucBaoChi from "./pages/tin-tuc/TinTucBaoChi.js";
+import TinTucSuKien from "./pages/tin-tuc/TinTucSuKien.js";
+import TinTucChiTiet from "./pages/tin-tuc/TinTucChiTiet.js";
+import TraCuuTuyenSinh from "./pages/tra-cuu-tuyen-sinh/TraCuuTuyenSinh.js";
+import AdminLoginPage from "./pages/admin/AdminLoginPage.js";
+import AdminDashboardPage from "./pages/admin/AdminDashboardPage.js";
+import AdminStudentApplicationsPage from "./pages/admin/AdminStudentApplicationsPage";
+import AdminPostCreationPage from "./pages/admin/AdminPostCreationPage.js";
 
-import TongQuanHocVien from "./features/info/pages/TongQuanHocVien.js";
-import ChinhSachHocBong from "./features/info/pages/ChinhSachHocBong.js";
-import CauHoiThuongGap from "./features/info/pages/CauHoiThuongGap.js";
-import BaCongKhai from "./features/info/pages/BaCongKhai.js";
-import DiemTrungTuyen from "./features/info/pages/DiemTrungTuyen.js";
-import DeAnTuyenSinh from "./features/info/pages/DeAnTuyenSinh.js";
+import TongQuanHocVien from "./pages/gioi-thieu/TongQuanHocVien.js";
+import ChinhSachHocBong from "./pages/gioi-thieu/ChinhSachHocBong.js";
+import CauHoiThuongGap from "./pages/gioi-thieu/CauHoiThuongGap.js";
+import BaCongKhai from "./pages/gioi-thieu/BaCongKhai.js";
+import DiemTrungTuyen from "./pages/gioi-thieu/DiemTrungTuyen.js";
+import DeAnTuyenSinh from "./pages/gioi-thieu/DeAnTuyenSinh.js";
 
-import LoginPage from "./features/auth/pages/LoginPage.tsx";
-import RegisterPage from "./features/auth/pages/RegisterPage.tsx";
-import NopHoSoTrucTuyen from "./features/application/pages/NopHoSoTrucTuyen.js";
-import ThemHoSo from "./features/application/pages/ThemHoSo.js";
+import LoginPage from "./pages/sinh-vien/DangNhap.tsx";
+import RegisterPage from "./pages/sinh-vien/DangKy.tsx";
+import NopHoSoTrucTuyen from "./pages/sinh-vien/NopHoSoTrucTuyen.js";
+import ThemHoSo from "./pages/sinh-vien/ThemHoSo.js";
+import DangNhap from "./pages/sinh-vien/DangNhap.tsx";
+import DangKy from "./pages/sinh-vien/DangKy.tsx";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -45,32 +47,23 @@ const AppLayout = () => {
           <Route path="/" element={<TrangChu />} />
           <Route
             path="/thong-bao/tuyen-sinh-dai-hoc/:slug"
-            element={<AnnouncementDetailPage />}
+            element={<ThongBaoChiTiet />}
           />
           <Route
             path="/thong-bao/tuyen-sinh-dai-hoc"
-            element={<AnnouncementsUniversityPage />}
+            element={<ThongBaoDaiHoc />}
           />
           <Route
             path="/thong-bao/tuyen-sinh-sau-dai-hoc"
-            element={<AnnouncementsPostgraduatePage />}
+            element={<ThongBaoSauDaiHoc />}
           />
-          <Route
-            path="/thong-bao/tuyen-sinh-khac"
-            element={<AnnouncementsOtherPage />}
-          />
+          <Route path="/thong-bao/tuyen-sinh-khac" element={<ThongBaoKhac />} />
           <Route
             path="/tin-tuc/thong-tin-bao-chi/:slug"
-            element={<NewsDetailPage />}
+            element={<TinTucChiTiet />}
           />
-          <Route
-            path="/tin-tuc/thong-tin-bao-chi"
-            element={<NewsPressPage />}
-          />
-          <Route
-            path="/tin-tuc/hoat-dong-su-kien"
-            element={<NewsEventsPage />}
-          />
+          <Route path="/tin-tuc/thong-tin-bao-chi" element={<TinTucBaoChi />} />
+          <Route path="/tin-tuc/hoat-dong-su-kien" element={<TinTucSuKien />} />
 
           <Route path="/gioi-thieu/tong-quan" element={<TongQuanHocVien />} />
           <Route path="/gioi-thieu/ba-cong-khai" element={<BaCongKhai />} />
@@ -86,15 +79,15 @@ const AppLayout = () => {
 
           <Route path="/de-an-tuyen-sinh/:year" element={<DeAnTuyenSinh />} />
 
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/login" element={<DangNhap />} />
 
-          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/register" element={<DangKy />} />
 
           <Route path="/nop-ho-so" element={<NopHoSoTrucTuyen />} />
 
           <Route path="/nop-ho-so/xet-tuyen" element={<ThemHoSo />} />
 
-          <Route path="/tra-cuu-tuyen-sinh" element={<AdmissionLookupPage />} />
+          <Route path="/tra-cuu-tuyen-sinh" element={<TraCuuTuyenSinh />} />
           <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
           <Route
