@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const universityAdmissionsData = [
   {
@@ -126,6 +127,12 @@ const UserIcon = () => (
 const AnnouncementDetailPage = () => {
   const { slug } = useParams();
   const article = universityAdmissionsData.find((item) => item.slug === slug);
+
+  useEffect(() => {
+    if (window.MathJax) {
+      window.MathJax.typesetPromise();
+    }
+  }, [article]);
 
   const relatedPosts = universityAdmissionsData
     .filter((item) => item.slug !== slug)
