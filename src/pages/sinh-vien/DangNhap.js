@@ -4,7 +4,7 @@ import ptit from "../../assets/images/ptit.jpg";
 import { Lock, User } from "lucide-react";
 
 const DangNhap = () => {
-  const [email, setEmail] = useState("");
+  const [cccd, setCccd] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -45,24 +45,17 @@ const DangNhap = () => {
 
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div>
-              <label
-                htmlFor="email-address"
-                className="block text-gray-700 mb-1"
-              >
-                Tên đăng nhập
-              </label>
+              <label className="block text-gray-700 mb-1">Tên đăng nhập</label>
               <div className="flex items-center border border-gray-300 rounded px-3 py-2">
                 <User className="w-4 h-4 text-gray-400 mr-2" />
                 <input
-                  id="email-address"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
+                  name="cccd"
+                  type="text"
                   required
                   className="w-full outline-none"
-                  placeholder="Địa chỉ email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Căn cước công dân"
+                  value={cccd}
+                  onChange={(e) => setCccd(e.target.value)}
                 />
               </div>
             </div>
