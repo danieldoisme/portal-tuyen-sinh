@@ -58,7 +58,7 @@ const data = [
     title: "Thông báo tuyển sinh Đại học hệ chính quy năm 2025 (Dự kiến)",
   },
   {
-    slug: "thong-bao-mo-he-thong-xet-tuyen-2025",
+    slug: "thong-tin-tuyen-sinh-chuong-trinh-chat-luong-cao-2025",
     image:
       "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
     date: "15/05/2025",

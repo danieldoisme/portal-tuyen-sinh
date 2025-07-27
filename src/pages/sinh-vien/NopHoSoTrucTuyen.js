@@ -6,6 +6,13 @@ const NopHoSoTrucTuyen = () => {
   const [selectedType, setSelectedType] = useState("Chính quy");
   const [selectedYear, setSelectedYear] = useState("Năm tuyển sinh 2025");
 
+  const handleLogout = () => {
+    // Xử lý logic đăng xuất ở đây (ví dụ: xóa token, session)
+    localStorage.removeItem("isStudentAuthenticated");
+    console.log("Sinh viên đã đăng xuất");
+    navigate("/dang-nhap");
+  };
+
   const handleCardClick = (type) => {
     if (type === "xet-tuyen") {
       navigate("/nop-ho-so/xet-tuyen");
@@ -59,8 +66,16 @@ const NopHoSoTrucTuyen = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold text-red-600 mb-4 flex items-center justify-center">
+        <div className="relative text-center mb-8">
+          <div className="absolute top-0 right-0">
+            <button
+              onClick={handleLogout}
+              className="bg-red-700 text-white font-medium py-2 px-4 rounded-lg hover:bg-red-800 transition-colors duration-300"
+            >
+              Đăng xuất
+            </button>
+          </div>
+          <h2 className="text-2xl font-bold text-red-600 mb-4 flex items-center justify-center pt-12 md:pt-0">
             Xin chào
             <span className="ml-2 text-3xl">👋</span>
           </h2>

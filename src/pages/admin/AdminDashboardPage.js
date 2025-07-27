@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Card = ({ to, title, description, icon }) => (
   <Link
@@ -18,14 +18,31 @@ const Card = ({ to, title, description, icon }) => (
 );
 
 const AdminDashboardPage = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Xử lý logic đăng xuất ở đây (ví dụ: xóa token, session)
+    localStorage.removeItem("isAdminAuthenticated");
+    console.log("Quản trị viên đã đăng xuất");
+    navigate("/admin/login");
+  };
+
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
       <div className="max-w-7xl mx-auto">
         <div className="mb-10">
-          <h1 className="text-4xl font-extrabold text-gray-900">
-            Trang quản trị
-          </h1>
-          <p className="mt-2 text-lg text-gray-500">
+          <div className="flex justify-between items-center mb-2">
+            <h1 className="text-4xl font-extrabold text-gray-900">
+              Trang quản trị
+            </h1>
+            <button
+              onClick={handleLogout}
+              className="bg-red-700 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-800 transition-colors duration-300"
+            >
+              Đăng xuất
+            </button>
+          </div>
+          <p className="text-lg text-gray-500">
             Chào mừng đến với trang quản lý hệ thống tuyển sinh.
           </p>
         </div>
