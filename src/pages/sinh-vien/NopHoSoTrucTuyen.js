@@ -10,7 +10,7 @@ const NopHoSoTrucTuyen = () => {
     // Xử lý logic đăng xuất ở đây (ví dụ: xóa token, session)
     localStorage.removeItem("isStudentAuthenticated");
     console.log("Sinh viên đã đăng xuất");
-    navigate("/dang-nhap");
+    navigate("/");
   };
 
   const handleCardClick = (type) => {
