@@ -172,7 +172,7 @@ const TinTucBaoChi = () => {
               </svg>
             </li>
             <li className="flex items-center">
-              <a href="#" className="text-gray-500 hover:text-red-700">
+              <a href="/tin-tuc" className="text-gray-500 hover:text-red-700">
                 Tin tức
               </a>
               <svg

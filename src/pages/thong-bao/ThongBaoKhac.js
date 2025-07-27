@@ -179,7 +179,7 @@ const ThongBaoKhac = () => {
               </svg>
             </li>
             <li className="flex items-center">
-              <a href="#" className="text-gray-500 hover:text-red-700">
+              <a href="/thong-bao" className="text-gray-500 hover:text-red-700">
                 Thông báo
               </a>
               <svg
