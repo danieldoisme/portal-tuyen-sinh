@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const NopHoSoTrucTuyen = () => {
@@ -6,12 +6,33 @@ const NopHoSoTrucTuyen = () => {
   const [selectedType, setSelectedType] = useState("Chính quy");
   const [selectedYear, setSelectedYear] = useState("Năm tuyển sinh 2025");
   const [showNhapHocAlert, setShowNhapHocAlert] = useState(false);
+  const [studentInfo, setStudentInfo] = useState(null);
+
+  // Mock API để lấy thông tin sinh viên
+  useEffect(() => {
+    const fetchStudentData = () => {
+      // Dữ liệu sinh viên giả
+      const mockStudent = {
+        email: "nguyenvanan@ptit.edu.vn",
+        cccd: "001234567890",
+        hoDem: "Nguyễn Văn",
+        ten: "An",
+      };
+      setStudentInfo(mockStudent);
+    };
+
+    fetchStudentData();
+  }, []);
 
   const handleLogout = () => {
     // Xử lý logic đăng xuất ở đây (ví dụ: xóa token, session)
     localStorage.removeItem("isStudentAuthenticated");
     console.log("Sinh viên đã đăng xuất");
     navigate("/");
+  };
+
+  const handleProfileClick = () => {
+    navigate("/thong-tin-ca-nhan", { state: { student: studentInfo } });
   };
 
   const handleCardClick = (type) => {
@@ -68,7 +89,13 @@ const NopHoSoTrucTuyen = () => {
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
         <div className="relative text-center mb-8">
-          <div className="absolute top-0 right-0">
+          <div className="absolute top-0 right-0 flex space-x-2">
+            <button
+              onClick={handleProfileClick}
+              className="bg-red-700 text-white font-medium py-2 px-4 rounded-lg hover:bg-red-800 transition-colors duration-300"
+            >
+              Thông tin cá nhân
+            </button>
             <button
               onClick={handleLogout}
               className="bg-red-700 text-white font-medium py-2 px-4 rounded-lg hover:bg-red-800 transition-colors duration-300"
@@ -77,7 +104,7 @@ const NopHoSoTrucTuyen = () => {
             </button>
           </div>
           <h2 className="text-2xl font-bold text-red-600 mb-4 flex items-center justify-center pt-12 md:pt-0">
-            Xin chào
+            Xin chào, {studentInfo ? `${studentInfo.ten}` : "bạn"}
             <span className="ml-2 text-3xl">👋</span>
           </h2>
           <p className="text-gray-600 mb-2">

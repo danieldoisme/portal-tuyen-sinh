@@ -32,6 +32,7 @@ import DangNhap from "./pages/sinh-vien/DangNhap.js";
 import DangKy from "./pages/sinh-vien/DangKy.js";
 import NopHoSoTrucTuyen from "./pages/sinh-vien/NopHoSoTrucTuyen.js";
 import XetTuyen from "./pages/sinh-vien/XetTuyen.js";
+import ThongTinCaNhan from "./pages/sinh-vien/ThongTinCaNhan.js";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -96,6 +97,15 @@ const AppLayout = () => {
             element={
               <ProtectedRoute role="student">
                 <XetTuyen />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/thong-tin-ca-nhan"
+            element={
+              <ProtectedRoute role="student">
+                <ThongTinCaNhan />
               </ProtectedRoute>
             }
           />
