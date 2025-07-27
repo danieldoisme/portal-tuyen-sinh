@@ -58,7 +58,7 @@ const ThamGiaXetTuyen = () => {
               </div>
 
               <button
-                onClick={() => navigate("/nop-ho-so")}
+                onClick={() => navigate("/dang-nhap")}
                 className="bg-white text-red-700 font-semibold py-4 px-8 rounded-full text-base inline-flex items-center gap-2 transition-all hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto justify-center"
               >
                 Nộp hồ sơ trực tuyến

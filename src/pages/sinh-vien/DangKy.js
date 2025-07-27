@@ -23,8 +23,21 @@ const DangKy = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Thêm logic xác thực (email, cccd, mật khẩu trùng khớp) và gửi dữ liệu đăng ký
+    if (formData.email !== formData.confirmEmail) {
+      alert("Email không khớp!");
+      return;
+    }
+    if (formData.cccd !== formData.confirmCccd) {
+      alert("CCCD không khớp!");
+      return;
+    }
+    if (formData.password !== formData.confirmPassword) {
+      alert("Mật khẩu không khớp!");
+      return;
+    }
+    // TODO: Gửi dữ liệu đăng ký đến backend
     console.log("Form data submitted:", formData);
+    alert("Sinh viên đăng ký thành công! Vui lòng đăng nhập.");
     navigate("/dang-nhap");
   };
 

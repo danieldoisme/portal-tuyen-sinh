@@ -226,7 +226,7 @@ const NavBar = () => {
               ))}
             </nav>
             <button
-              onClick={() => handleNavigation("/nop-ho-so")}
+              onClick={() => handleNavigation("/dang-nhap")}
               className="ml-6 bg-red-700 text-white px-5 py-2.5 rounded-md text-sm font-medium hover:bg-red-800 transition duration-150 ease-in-out"
             >
               Nộp hồ sơ trực tuyến

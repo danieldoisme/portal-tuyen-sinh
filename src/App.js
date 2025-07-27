@@ -30,7 +30,7 @@ import DeAnTuyenSinh from "./pages/de-an-tuyen-sinh/DeAnTuyenSinh.js";
 import DangNhap from "./pages/sinh-vien/DangNhap.js";
 import DangKy from "./pages/sinh-vien/DangKy.js";
 import NopHoSoTrucTuyen from "./pages/sinh-vien/NopHoSoTrucTuyen.js";
-import ThemHoSo from "./pages/sinh-vien/ThemHoSo.js";
+import XetTuyen from "./pages/sinh-vien/XetTuyen.js";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -83,7 +83,7 @@ const AppLayout = () => {
 
           <Route path="/nop-ho-so" element={<NopHoSoTrucTuyen />} />
 
-          <Route path="/nop-ho-so/xet-tuyen" element={<ThemHoSo />} />
+          <Route path="/nop-ho-so/xet-tuyen" element={<XetTuyen />} />
 
           <Route path="/tra-cuu-tuyen-sinh" element={<TraCuuTuyenSinh />} />
           <Route path="/admin/login" element={<AdminLoginPage />} />

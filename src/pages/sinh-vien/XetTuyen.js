@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const ThemHoSo = () => {
+const XetTuyen = () => {
   const navigate = useNavigate();
   const [selectedType, setSelectedType] = useState("Chính quy");
   const [selectedYear, setSelectedYear] = useState("Năm tuyển sinh 2025");
@@ -164,4 +164,4 @@ const ThemHoSo = () => {
   );
 };
 
-export default ThemHoSo;
+export default XetTuyen;

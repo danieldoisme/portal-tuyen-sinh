@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const NopHoSoTrucTuyen = () => {
@@ -113,7 +113,7 @@ const NopHoSoTrucTuyen = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-800">
-                Nộp hồ sơ trực tuyến
+                Xét tuyển trực tuyến
               </h3>
             </div>
 

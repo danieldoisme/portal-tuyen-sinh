@@ -55,7 +55,7 @@ const DangKyXetTuyen = () => {
             viên của PTIT
           </p>
           <a
-            href="/nop-ho-so"
+            href="/dang-nhap"
             className="inline-flex items-center bg-red-700 text-white font-semibold px-8 py-3 rounded-md hover:bg-red-800 transition duration-300 ease-in-out text-lg"
           >
             Nộp hồ sơ trực tuyến

@@ -13,6 +13,9 @@ const DangNhap = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // TODO: Thêm logic xác thực đăng nhập ở đây
+    // Ví dụ: gọi API để xác thực
+    // Sau khi xác thực thành công:
+    console.log("Sinh viên đăng nhập thành công");
     navigate("/nop-ho-so");
   };
 
