@@ -84,7 +84,7 @@ const XetTuyen = () => {
           className="w-32 h-32 mb-6 object-contain"
         />
         <button
-          onClick={() => navigate("/nop-ho-so/xet-tuyen/tao")}
+          onClick={() => navigate("/nop-ho-so/xet-tuyen/them-moi-ho-so")}
           className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300"
         >
           Thêm mới hồ sơ
