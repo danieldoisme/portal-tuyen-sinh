@@ -11,6 +11,9 @@ const AdminLoginPage = () => {
     // Logic đăng nhập của quản trị viên sẽ được xử lý ở backend trong tương lai.
     console.log("Admin Login Attempt:", { email, password });
 
+    // Giả lập đăng nhập thành công và lưu trạng thái
+    localStorage.setItem("isAdminAuthenticated", "true");
+
     navigate("/admin/dashboard");
   };
 

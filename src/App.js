@@ -20,6 +20,7 @@ import AdminLoginPage from "./pages/admin/AdminLoginPage.js";
 import AdminDashboardPage from "./pages/admin/AdminDashboardPage.js";
 import AdminStudentApplicationsPage from "./pages/admin/AdminStudentApplicationsPage";
 import AdminPostCreationPage from "./pages/admin/AdminPostCreationPage.js";
+import ProtectedRoute from "./components/auth/ProtectedRoute.js";
 
 import TongQuanHocVien from "./pages/gioi-thieu/TongQuanHocVien.js";
 import ChinhSachHocBong from "./pages/gioi-thieu/ChinhSachHocBong.js";
@@ -81,20 +82,49 @@ const AppLayout = () => {
 
           <Route path="/dang-ky" element={<DangKy />} />
 
-          <Route path="/nop-ho-so" element={<NopHoSoTrucTuyen />} />
+          <Route
+            path="/nop-ho-so"
+            element={
+              <ProtectedRoute role="student">
+                <NopHoSoTrucTuyen />
+              </ProtectedRoute>
+            }
+          />
 
-          <Route path="/nop-ho-so/xet-tuyen" element={<XetTuyen />} />
+          <Route
+            path="/nop-ho-so/xet-tuyen"
+            element={
+              <ProtectedRoute role="student">
+                <XetTuyen />
+              </ProtectedRoute>
+            }
+          />
 
           <Route path="/tra-cuu-tuyen-sinh" element={<TraCuuTuyenSinh />} />
           <Route path="/admin/login" element={<AdminLoginPage />} />
-          <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute role="admin">
+                <AdminDashboardPage />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/admin/applications"
-            element={<AdminStudentApplicationsPage />}
+            element={
+              <ProtectedRoute role="admin">
+                <AdminStudentApplicationsPage />
+              </ProtectedRoute>
+            }
           />
           <Route
             path="/admin/create-post"
-            element={<AdminPostCreationPage />}
+            element={
+              <ProtectedRoute role="admin">
+                <AdminPostCreationPage />
+              </ProtectedRoute>
+            }
           />
         </Routes>
       </main>

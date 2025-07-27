@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ptit from "../../assets/images/ptit.jpg";
 import { Lock, User } from "lucide-react";
 
 const DangNhap = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleRegisterClick = (e) => {
@@ -16,6 +19,10 @@ const DangNhap = () => {
     // Ví dụ: gọi API để xác thực
     // Sau khi xác thực thành công:
     console.log("Sinh viên đăng nhập thành công");
+
+    // Giả lập đăng nhập thành công và lưu trạng thái
+    localStorage.setItem("isStudentAuthenticated", "true");
+
     navigate("/nop-ho-so");
   };
 
@@ -38,25 +45,44 @@ const DangNhap = () => {
 
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div>
-              <label className="block text-gray-700 mb-1">Tên đăng nhập</label>
+              <label
+                htmlFor="email-address"
+                className="block text-gray-700 mb-1"
+              >
+                Tên đăng nhập
+              </label>
               <div className="flex items-center border border-gray-300 rounded px-3 py-2">
                 <User className="w-4 h-4 text-gray-400 mr-2" />
                 <input
-                  type="text"
-                  placeholder="Tài khoản"
+                  id="email-address"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
                   className="w-full outline-none"
+                  placeholder="Địa chỉ email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-gray-700 mb-1">Mật khẩu</label>
+              <label htmlFor="password" className="block text-gray-700 mb-1">
+                Mật khẩu
+              </label>
               <div className="flex items-center border border-gray-300 rounded px-3 py-2">
                 <Lock className="w-4 h-4 text-gray-400 mr-2" />
                 <input
+                  id="password"
+                  name="password"
                   type="password"
-                  placeholder="Mật khẩu"
+                  autoComplete="current-password"
+                  required
                   className="w-full outline-none"
+                  placeholder="Mật khẩu"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
