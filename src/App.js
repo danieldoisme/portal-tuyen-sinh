@@ -8,6 +8,7 @@ import NavBar from "./components/layout/NavBar.js";
 import Footer from "./components/layout/Footer";
 import ScrollToTopButton from "./components/ui/ScrollToTopButton.js";
 import TrangChu from "./pages/TrangChu.js";
+<<<<<<< HEAD
 import AnnouncementsUniversityPage from "./features/announcements/pages/AnnouncementsUniversityPage.js";
 import AnnouncementsPostgraduatePage from "./features/announcements/pages/AnnouncementsPostgraduatePage.js";
 import AnnouncementsOtherPage from "./features/announcements/pages/AnnouncementsOtherPage.js";
@@ -21,57 +22,66 @@ import AdminDashboardPage from "./features/admin/pages/AdminDashboardPage.js";
 import AdminStudentApplicationsPage from "./features/admin/pages/AdminStudentApplicationsPage";
 import AdminPostCreationPage from "./features/admin/pages/AdminPostCreationPage.js";
 import AdminPostListPage from "./features/admin/pages/AdminPostListPage";
+=======
+import ThongBaoDaiHoc from "./pages/thong-bao/ThongBaoDaiHoc.js";
+import ThongBaoSauDaiHoc from "./pages/thong-bao/ThongBaoSauDaiHoc.js";
+import ThongBaoKhac from "./pages/thong-bao/ThongBaoKhac.js";
+import ThongBaoChiTiet from "./pages/thong-bao/ThongBaoChiTiet.js";
+import TinTucBaoChi from "./pages/tin-tuc/TinTucBaoChi.js";
+import TinTucSuKien from "./pages/tin-tuc/TinTucSuKien.js";
+import TinTucChiTiet from "./pages/tin-tuc/TinTucChiTiet.js";
+import TraCuuTuyenSinh from "./pages/tra-cuu-tuyen-sinh/TraCuuTuyenSinh.js";
+import AdminLoginPage from "./pages/admin/AdminLoginPage.js";
+import AdminDashboardPage from "./pages/admin/AdminDashboardPage.js";
+import AdminStudentApplicationsPage from "./pages/admin/AdminStudentApplicationsPage";
+import AdminPostCreationPage from "./pages/admin/AdminPostCreationPage.js";
+import ProtectedRoute from "./components/auth/ProtectedRoute.js";
+>>>>>>> origin/main
 
-import TongQuanHocVien from "./features/info/pages/TongQuanHocVien.js";
-import ChinhSachHocBong from "./features/info/pages/ChinhSachHocBong.js";
-import CauHoiThuongGap from "./features/info/pages/CauHoiThuongGap.js";
-import BaCongKhai from "./features/info/pages/BaCongKhai.js";
-import DiemTrungTuyen from "./features/info/pages/DiemTrungTuyen.js";
-import DeAnTuyenSinh from "./features/info/pages/DeAnTuyenSinh.js";
+import TongQuanHocVien from "./pages/gioi-thieu/TongQuanHocVien.js";
+import ChinhSachHocBong from "./pages/gioi-thieu/ChinhSachHocBong.js";
+import CauHoiThuongGap from "./pages/gioi-thieu/CauHoiThuongGap.js";
+import BaCongKhai from "./pages/gioi-thieu/BaCongKhai.js";
+import DeAnTuyenSinh from "./pages/de-an-tuyen-sinh/DeAnTuyenSinh.js";
 
-import LoginPage from "./features/auth/pages/LoginPage.tsx";
-import RegisterPage from "./features/auth/pages/RegisterPage.tsx";
-import NopHoSoTrucTuyen from "./features/application/pages/NopHoSoTrucTuyen.js";
-import ThemHoSo from "./features/application/pages/ThemHoSo.js";
+import DangNhap from "./pages/sinh-vien/DangNhap.js";
+import DangKy from "./pages/sinh-vien/DangKy.js";
+import NopHoSoTrucTuyen from "./pages/sinh-vien/NopHoSoTrucTuyen.js";
+import XetTuyen from "./pages/sinh-vien/XetTuyen.js";
+import ThongTinCaNhan from "./pages/sinh-vien/ThongTinCaNhan.js";
+import ThemMoiHoSo from "./pages/sinh-vien/ThemMoiHoSo.js";
 
 const AppLayout = () => {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith("/admin");
+  const isAuthRoute =
+    location.pathname === "/dang-nhap" || location.pathname === "/dang-ky";
 
   return (
     <div className="flex flex-col min-h-screen">
-      {!isAdminRoute && <NavBar />}
+      {!isAdminRoute && !isAuthRoute && <NavBar />}
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<TrangChu />} />
           <Route
             path="/thong-bao/tuyen-sinh-dai-hoc/:slug"
-            element={<AnnouncementDetailPage />}
+            element={<ThongBaoChiTiet />}
           />
           <Route
             path="/thong-bao/tuyen-sinh-dai-hoc"
-            element={<AnnouncementsUniversityPage />}
+            element={<ThongBaoDaiHoc />}
           />
           <Route
             path="/thong-bao/tuyen-sinh-sau-dai-hoc"
-            element={<AnnouncementsPostgraduatePage />}
+            element={<ThongBaoSauDaiHoc />}
           />
-          <Route
-            path="/thong-bao/tuyen-sinh-khac"
-            element={<AnnouncementsOtherPage />}
-          />
+          <Route path="/thong-bao/tuyen-sinh-khac" element={<ThongBaoKhac />} />
           <Route
             path="/tin-tuc/thong-tin-bao-chi/:slug"
-            element={<NewsDetailPage />}
+            element={<TinTucChiTiet />}
           />
-          <Route
-            path="/tin-tuc/thong-tin-bao-chi"
-            element={<NewsPressPage />}
-          />
-          <Route
-            path="/tin-tuc/hoat-dong-su-kien"
-            element={<NewsEventsPage />}
-          />
+          <Route path="/tin-tuc/thong-tin-bao-chi" element={<TinTucBaoChi />} />
+          <Route path="/tin-tuc/hoat-dong-su-kien" element={<TinTucSuKien />} />
 
           <Route path="/gioi-thieu/tong-quan" element={<TongQuanHocVien />} />
           <Route path="/gioi-thieu/ba-cong-khai" element={<BaCongKhai />} />
@@ -83,34 +93,80 @@ const AppLayout = () => {
             path="/gioi-thieu/cau-hoi-thuong-gap"
             element={<CauHoiThuongGap />}
           />
-          <Route path="/diem-trung-tuyen/:year" element={<DiemTrungTuyen />} />
 
           <Route path="/de-an-tuyen-sinh/:year" element={<DeAnTuyenSinh />} />
 
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/dang-nhap" element={<DangNhap />} />
 
-          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/dang-ky" element={<DangKy />} />
 
-          <Route path="/nop-ho-so" element={<NopHoSoTrucTuyen />} />
+          <Route
+            path="/nop-ho-so"
+            element={
+              <ProtectedRoute role="student">
+                <NopHoSoTrucTuyen />
+              </ProtectedRoute>
+            }
+          />
 
-          <Route path="/nop-ho-so/xet-tuyen" element={<ThemHoSo />} />
+          <Route
+            path="/nop-ho-so/xet-tuyen"
+            element={
+              <ProtectedRoute role="student">
+                <XetTuyen />
+              </ProtectedRoute>
+            }
+          />
 
-          <Route path="/tra-cuu-tuyen-sinh" element={<AdmissionLookupPage />} />
+          <Route
+            path="/thong-tin-ca-nhan"
+            element={
+              <ProtectedRoute role="student">
+                <ThongTinCaNhan />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/nop-ho-so/xet-tuyen/them-moi-ho-so"
+            element={
+              <ProtectedRoute role="student">
+                <ThemMoiHoSo />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route path="/tra-cuu-tuyen-sinh" element={<TraCuuTuyenSinh />} />
           <Route path="/admin/login" element={<AdminLoginPage />} />
-          <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute role="admin">
+                <AdminDashboardPage />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/admin/applications"
-            element={<AdminStudentApplicationsPage />}
+            element={
+              <ProtectedRoute role="admin">
+                <AdminStudentApplicationsPage />
+              </ProtectedRoute>
+            }
           />
           <Route
             path="/admin/create-post"
-            element={<AdminPostCreationPage />}
+            element={
+              <ProtectedRoute role="admin">
+                <AdminPostCreationPage />
+              </ProtectedRoute>
+            }
           />
           <Route path="/admin/posts" element={<AdminPostListPage />} />
         </Routes>
       </main>
-      {!isAdminRoute && <Footer />}
-      {!isAdminRoute && <ScrollToTopButton />}
+      {!isAdminRoute && !isAuthRoute && <Footer />}
+      {!isAdminRoute && !isAuthRoute && <ScrollToTopButton />}
     </div>
   );
 };

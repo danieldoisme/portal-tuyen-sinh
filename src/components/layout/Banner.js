@@ -58,7 +58,7 @@ const Banner = () => {
               <ArrowRightIcon />
             </a>
             <a
-              href="#"
+              href="/nop-ho-so"
               className="bg-red-700 text-white font-semibold px-6 py-3 rounded-md hover:bg-red-800 transition duration-300 ease-in-out flex items-center"
             >
               Nộp hồ sơ trực tuyến

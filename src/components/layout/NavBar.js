@@ -24,10 +24,16 @@ const NavItem = ({
   isDropdownOpen,
   onNavigate,
   isActive,
+  onMouseEnter,
+  onMouseLeave,
 }) => {
   if (link.hasDropdown) {
     return (
-      <div className="relative">
+      <div
+        className="relative"
+        onMouseEnter={() => onMouseEnter(link.title)}
+        onMouseLeave={onMouseLeave}
+      >
         <button
           onClick={() => onDropdownClick(link.title)}
           className={`text-gray-700 px-3 py-2 rounded-md text-sm font-medium flex items-center transition duration-150 ease-in-out ${
@@ -41,7 +47,7 @@ const NavItem = ({
         </button>
 
         {isDropdownOpen && (
-          <div className="absolute top-full left-0 mt-1 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+          <div className="absolute top-full left-0 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-50">
             <div className="py-1">
               {link.dropdownItems.map((item, index) => (
                 <button
@@ -112,9 +118,6 @@ const navLinks = [
     dropdownItems: [
       { title: "Đề án tuyển sinh năm 2025", href: "/de-an-tuyen-sinh/2025" },
       { title: "Đề án tuyển sinh năm 2024", href: "/de-an-tuyen-sinh/2024" },
-      { title: "Đề án tuyển sinh năm 2023", href: "/de-an-tuyen-sinh/2023" },
-      { title: "Đề án tuyển sinh năm 2022", href: "/de-an-tuyen-sinh/2022" },
-      { title: "Đề án tuyển sinh năm 2021", href: "/de-an-tuyen-sinh/2021" },
     ],
     basePath: "/de-an-tuyen-sinh",
   },
@@ -174,6 +177,18 @@ const NavBar = () => {
     setActiveDropdown(activeDropdown === menuName ? null : menuName);
   };
 
+  const handleMouseEnter = (menuName) => {
+    if (window.innerWidth >= 768) {
+      setActiveDropdown(menuName);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (window.innerWidth >= 768) {
+      setActiveDropdown(null);
+    }
+  };
+
   return (
     <header
       className={`bg-white shadow-sm relative z-30 ${
@@ -205,6 +220,8 @@ const NavBar = () => {
                   isDropdownOpen={activeDropdown === link.title}
                   onNavigate={handleNavigation}
                   isActive={activeItem === link.title}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                 />
               ))}
             </nav>
