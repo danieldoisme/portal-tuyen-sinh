@@ -76,7 +76,10 @@ const AdminPostListPage = () => {
       post.subcategory === "hoat-dong-su-kien"
     ) {
       url = `/tin-tuc/hoat-dong-su-kien/${post.id}`;
-    } else if (post.category === "thong-bao" && post.subcategory === "dai-hoc") {
+    } else if (
+      post.category === "thong-bao" &&
+      post.subcategory === "dai-hoc"
+    ) {
       url = `/thong-bao/tuyen-sinh-dai-hoc/${post.id}`;
     } else if (
       post.category === "thong-bao" &&
