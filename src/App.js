@@ -8,21 +8,19 @@ import NavBar from "./components/layout/NavBar.js";
 import Footer from "./components/layout/Footer";
 import ScrollToTopButton from "./components/ui/ScrollToTopButton.js";
 import TrangChu from "./pages/TrangChu.js";
-<<<<<<< HEAD
-import AnnouncementsUniversityPage from "./features/announcements/pages/AnnouncementsUniversityPage.js";
-import AnnouncementsPostgraduatePage from "./features/announcements/pages/AnnouncementsPostgraduatePage.js";
-import AnnouncementsOtherPage from "./features/announcements/pages/AnnouncementsOtherPage.js";
-import AnnouncementDetailPage from "./features/announcements/pages/AnnouncementDetailPage.js";
-import NewsPressPage from "./features/news/pages/NewsPressPage.js";
-import NewsEventsPage from "./features/news/pages/NewsEventsPage.js";
-import NewsDetailPage from "./features/news/pages/NewsDetailPage.js";
-import AdmissionLookupPage from "./features/tra-cuu/pages/AdmissionLookupPage.js";
-import AdminLoginPage from "./features/admin/pages/AdminLoginPage.js";
-import AdminDashboardPage from "./features/admin/pages/AdminDashboardPage.js";
-import AdminStudentApplicationsPage from "./features/admin/pages/AdminStudentApplicationsPage";
-import AdminPostCreationPage from "./features/admin/pages/AdminPostCreationPage.js";
-import AdminPostListPage from "./features/admin/pages/AdminPostListPage";
-=======
+// import AnnouncementsUniversityPage from "./features/announcements/pages/AnnouncementsUniversityPage.js";
+// import AnnouncementsPostgraduatePage from "./features/announcements/pages/AnnouncementsPostgraduatePage.js";
+// import AnnouncementsOtherPage from "./features/announcements/pages/AnnouncementsOtherPage.js";
+// import AnnouncementDetailPage from "./features/announcements/pages/AnnouncementDetailPage.js";
+// import NewsPressPage from "./features/news/pages/NewsPressPage.js";
+// import NewsEventsPage from "./features/news/pages/NewsEventsPage.js";
+// import NewsDetailPage from "./features/news/pages/NewsDetailPage.js";
+// import AdmissionLookupPage from "./features/tra-cuu/pages/AdmissionLookupPage.js";
+// import AdminLoginPage from "./features/admin/pages/AdminLoginPage.js";
+// import AdminDashboardPage from "./features/admin/pages/AdminDashboardPage.js";
+// import AdminStudentApplicationsPage from "./features/admin/pages/AdminStudentApplicationsPage";
+// import AdminPostCreationPage from "./features/admin/pages/AdminPostCreationPage.js";
+import AdminPostListPage from "./pages/admin/AdminPostListPage.js";
 import ThongBaoDaiHoc from "./pages/thong-bao/ThongBaoDaiHoc.js";
 import ThongBaoSauDaiHoc from "./pages/thong-bao/ThongBaoSauDaiHoc.js";
 import ThongBaoKhac from "./pages/thong-bao/ThongBaoKhac.js";
@@ -36,7 +34,6 @@ import AdminDashboardPage from "./pages/admin/AdminDashboardPage.js";
 import AdminStudentApplicationsPage from "./pages/admin/AdminStudentApplicationsPage";
 import AdminPostCreationPage from "./pages/admin/AdminPostCreationPage.js";
 import ProtectedRoute from "./components/auth/ProtectedRoute.js";
->>>>>>> origin/main
 
 import TongQuanHocVien from "./pages/gioi-thieu/TongQuanHocVien.js";
 import ChinhSachHocBong from "./pages/gioi-thieu/ChinhSachHocBong.js";
