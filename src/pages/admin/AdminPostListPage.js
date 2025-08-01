@@ -65,30 +65,7 @@ const AdminPostListPage = () => {
   };
 
   const handleOpenDetail = (post) => {
-    let url = "/";
-    if (
-      post.category === "tin-tuc" &&
-      post.subcategory === "thong-tin-bao-chi"
-    ) {
-      url = `/tin-tuc/thong-tin-bao-chi/${post.id}`;
-    } else if (
-      post.category === "tin-tuc" &&
-      post.subcategory === "hoat-dong-su-kien"
-    ) {
-      url = `/tin-tuc/hoat-dong-su-kien/${post.id}`;
-    } else if (
-      post.category === "thong-bao" &&
-      post.subcategory === "dai-hoc"
-    ) {
-      url = `/thong-bao/tuyen-sinh-dai-hoc/${post.id}`;
-    } else if (
-      post.category === "thong-bao" &&
-      post.subcategory === "sau-dai-hoc"
-    ) {
-      url = `/thong-bao/tuyen-sinh-sau-dai-hoc/${post.id}`;
-    } else if (post.category === "thong-bao" && post.subcategory === "khac") {
-      url = `/thong-bao/tuyen-sinh-khac/${post.id}`;
-    }
+    const url = `/${post.category}/${post.subcategory}/${post.id}`;
     window.open(url, "_blank");
   };
 
