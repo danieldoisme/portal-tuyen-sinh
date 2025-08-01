@@ -76,7 +76,10 @@ const AdminPostListPage = () => {
       post.subcategory === "hoat-dong-su-kien"
     ) {
       url = `/tin-tuc/hoat-dong-su-kien/${post.id}`;
-    } else if (post.category === "thong-bao" && post.subcategory === "dai-hoc") {
+    } else if (
+      post.category === "thong-bao" &&
+      post.subcategory === "dai-hoc"
+    ) {
       url = `/thong-bao/tuyen-sinh-dai-hoc/${post.id}`;
     } else if (
       post.category === "thong-bao" &&
@@ -175,9 +178,9 @@ const AdminPostListPage = () => {
           </tbody>
         </table>
         {/* Phân trang */}
-        <div className="flex justify-center items-center gap-2 mt-4">
+        <div className="flex justify-center items-center gap-2 mt-6">
           <button
-            className="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300"
+            className="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
             onClick={() => handlePageChange(page - 1)}
             disabled={page === 1}
           >
@@ -187,7 +190,7 @@ const AdminPostListPage = () => {
             Trang {page} / {totalPages}
           </span>
           <button
-            className="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300"
+            className="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
             onClick={() => handlePageChange(page + 1)}
             disabled={page === totalPages}
           >
@@ -195,7 +198,7 @@ const AdminPostListPage = () => {
           </button>
         </div>
         <button
-          className="mt-6 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+          className="mt-8 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
           onClick={() => navigate("/admin/dashboard")}
         >
           Quay lại Dashboard

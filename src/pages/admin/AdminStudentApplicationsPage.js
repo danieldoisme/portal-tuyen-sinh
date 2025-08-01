@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 
 const applicationData = [
   {
@@ -36,22 +37,107 @@ const applicationData = [
     phuongThuc: "Kết quả thi THPT",
     trangThai: "Đã duyệt",
   },
+  {
+    id: 6,
+    hoTen: "Nguyễn Thị Hoa",
+    ngayNop: "2025-07-20",
+    phuongThuc: "Xét tuyển tài năng",
+    trangThai: "Chờ duyệt",
+  },
+  {
+    id: 7,
+    hoTen: "Trần Văn Hùng",
+    ngayNop: "2025-07-21",
+    phuongThuc: "Kết quả thi THPT",
+    trangThai: "Từ chối",
+  },
+  {
+    id: 8,
+    hoTen: "Lê Thị Lan",
+    ngayNop: "2025-07-22",
+    phuongThuc: "Kết hợp",
+    trangThai: "Chờ duyệt",
+  },
+  {
+    id: 9,
+    hoTen: "Phạm Văn Minh",
+    ngayNop: "2025-07-23",
+    phuongThuc: "Xét tuyển tài năng",
+    trangThai: "Đã duyệt",
+  },
+  {
+    id: 10,
+    hoTen: "Nguyễn Văn Tèo",
+    ngayNop: "2025-07-24",
+    phuongThuc: "Kết quả thi THPT",
+    trangThai: "Chờ duyệt",
+  },
+  {
+    id: 11,
+    hoTen: "Trần Thị Tí",
+    ngayNop: "2025-07-25",
+    phuongThuc: "Kết hợp",
+    trangThai: "Từ chối",
+  },
+  {
+    id: 12,
+    hoTen: "Lê Văn Tú",
+    ngayNop: "2025-07-26",
+    phuongThuc: "Xét tuyển tài năng",
+    trangThai: "Chờ duyệt",
+  },
+  {
+    id: 13,
+    hoTen: "Phạm Thị Vân",
+    ngayNop: "2025-07-27",
+    phuongThuc: "Kết quả thi THPT",
+    trangThai: "Đã duyệt",
+  },
+  {
+    id: 14,
+    hoTen: "Hoàng Văn Quân",
+    ngayNop: "2025-07-28",
+    phuongThuc: "Kết hợp",
+    trangThai: "Chờ duyệt",
+  },
+  {
+    id: 15,
+    hoTen: "Nguyễn Thị Mai",
+    ngayNop: "2025-07-29",
+    phuongThuc: "Xét tuyển tài năng",
+    trangThai: "Từ chối",
+  },
 ];
+
+const PAGE_SIZE = 10;
 
 const AdminStudentApplicationsPage = () => {
   const [applications, setApplications] = useState(applicationData);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [page, setPage] = useState(1);
+  const navigate = useNavigate();
 
   const filteredApplications = useMemo(() => {
-    return applications
+    const filtered = applications
       .filter((app) =>
         app.hoTen.toLowerCase().includes(searchTerm.toLowerCase())
       )
       .filter(
         (app) => statusFilter === "all" || app.trangThai === statusFilter
       );
+    setPage(1);
+    return filtered;
   }, [applications, searchTerm, statusFilter]);
+
+  const totalPages = useMemo(() => {
+    return Math.ceil(filteredApplications.length / PAGE_SIZE);
+  }, [filteredApplications]);
+
+  const paginatedApplications = useMemo(() => {
+    const startIndex = (page - 1) * PAGE_SIZE;
+    return filteredApplications.slice(startIndex, startIndex + PAGE_SIZE);
+  }, [filteredApplications, page]);
 
   const handleStatusChange = (id, newStatus) => {
     setApplications(
@@ -59,6 +145,12 @@ const AdminStudentApplicationsPage = () => {
         app.id === id ? { ...app, trangThai: newStatus } : app
       )
     );
+  };
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setPage(newPage);
+    }
   };
 
   return (
@@ -113,7 +205,7 @@ const AdminStudentApplicationsPage = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {filteredApplications.map((app) => (
+              {paginatedApplications.map((app) => (
                 <tr key={app.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                     {app.hoTen}
@@ -160,9 +252,45 @@ const AdminStudentApplicationsPage = () => {
                   </td>
                 </tr>
               ))}
+              {paginatedApplications.length === 0 && (
+                <tr>
+                  <td colSpan="5" className="text-center py-4 text-gray-500">
+                    Không có hồ sơ nào.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
+
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center gap-2 mt-6">
+            <button
+              className="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
+              onClick={() => handlePageChange(page - 1)}
+              disabled={page === 1}
+            >
+              &lt;
+            </button>
+            <span>
+              Trang {page} / {totalPages}
+            </span>
+            <button
+              className="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
+              onClick={() => handlePageChange(page + 1)}
+              disabled={page === totalPages}
+            >
+              &gt;
+            </button>
+          </div>
+        )}
+
+        <button
+          className="mt-8 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+          onClick={() => navigate("/admin/dashboard")}
+        >
+          Quay lại Dashboard
+        </button>
       </div>
     </div>
   );

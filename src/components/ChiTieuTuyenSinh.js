@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import IconTuyenSinh from "./ui/IconTuyenSinh";
 
 const AdmissionCard = ({ icon, title, code, quota }) => {
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6 text-center shadow-md hover:shadow-xl transition-shadow">
       <div className="flex justify-center mb-4">
         <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center">
-          <img src={icon} alt={`Icon for ${title}`} className="w-8 h-8" />
+          {icon}
         </div>
       </div>
       <h4 className="text-xl font-bold text-gray-800 h-16 flex items-center justify-center">
@@ -17,93 +18,39 @@ const AdmissionCard = ({ icon, title, code, quota }) => {
   );
 };
 
-const mockApiDataNorth = [
-  {
-    icon: "https://placehold.co/64x64/fef2f2/ef4444?text=ICON",
-    title: "Trí tuệ nhân tạo vạn vật (AIoT)",
-    codePrefix: "Mã ngành",
-    code: "7520207",
-    quota: 80,
-  },
-  {
-    icon: "https://placehold.co/64x64/fef2f2/ef4444?text=ICON",
-    title: "Công nghệ thông tin (cử nhân, định hướng ứng dụng)",
-    codePrefix: "Mã ngành",
-    code: "7480201_UDU",
-    quota: 300,
-  },
-  {
-    icon: "https://placehold.co/64x64/fef2f2/ef4444?text=ICON",
-    title: "Ngành Trí tuệ nhân tạo",
-    codePrefix: "Mã ngành",
-    code: "7480107",
-    quota: 150,
-  },
-  {
-    icon: "https://placehold.co/64x64/fef2f2/ef4444?text=ICON",
-    title: "Thiết kế và phát triển Game (ngành Công nghệ đa phương tiện)",
-    codePrefix: "Mã ngành",
-    code: "7329001_GAM",
-    quota: 200,
-  },
-  {
-    icon: "https://placehold.co/64x64/fef2f2/ef4444?text=ICON",
-    title: "Chương trình Truyền thông đa phương tiện chất lượng cao",
-    codePrefix: "Mã ngành",
-    code: "7320104_CLC",
-    quota: 90,
-  },
-  {
-    icon: "https://placehold.co/64x64/fef2f2/ef4444?text=ICON",
-    title: "Ngành Kỹ thuật Điện tử viễn thông",
-    codePrefix: "Mã ngành",
-    code: "7520207",
-    quota: 430,
-  },
-];
-
-const mockApiDataSouth = [
-  {
-    icon: "https://placehold.co/64x64/fef2f2/ef4444?text=ICON",
-    title: "Ngành Công nghệ thông tin",
-    codePrefix: "Mã ngành",
-    code: "7480201",
-    quota: 230,
-  },
-  {
-    icon: "https://placehold.co/64x64/fef2f2/ef4444?text=ICON",
-    title: "Ngành An toàn thông tin",
-    codePrefix: "Mã ngành",
-    code: "7480202",
-    quota: 120,
-  },
-  {
-    icon: "https://placehold.co/64x64/fef2f2/ef4444?text=ICON",
-    title: "Ngành Kỹ thuật Điện tử viễn thông",
-    codePrefix: "Mã ngành",
-    code: "7520207",
-    quota: 140,
-  },
-];
-
 const ChiTieuTuyenSinh = () => {
   const [admissionsData, setAdmissionsData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState("north");
 
   useEffect(() => {
-    const fetchData = () => {
+    const fetchData = async () => {
       setLoading(true);
-      setTimeout(() => {
-        setAdmissionsData(
-          activeTab === "north" ? mockApiDataNorth : mockApiDataSouth
+      setError(null);
+      try {
+        const response = await fetch(
+          "http://localhost:8081/api/majors?page=1&size=10"
         );
+        if (!response.ok) {
+          throw new Error("Lỗi mạng hoặc không tìm thấy endpoint");
+        }
+        const result = await response.json();
+
+        if (result.status === "success") {
+          setAdmissionsData(result.data);
+        } else {
+          throw new Error("API trả về lỗi");
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
         setLoading(false);
-      }, 500);
+      }
     };
 
     fetchData();
-  }, [activeTab]);
+  }, []);
 
   return (
     <section className="py-12 bg-white">
@@ -125,7 +72,7 @@ const ChiTieuTuyenSinh = () => {
             onClick={() => setActiveTab("north")}
           >
             <a
-              href="#"
+              href="/"
               onClick={(e) => e.preventDefault()}
               className={`font-semibold flex items-center ${
                 activeTab === "north"
@@ -159,7 +106,7 @@ const ChiTieuTuyenSinh = () => {
             onClick={() => setActiveTab("south")}
           >
             <a
-              href="#"
+              href="/"
               onClick={(e) => e.preventDefault()}
               className={`font-semibold flex items-center ${
                 activeTab === "south"
@@ -191,15 +138,17 @@ const ChiTieuTuyenSinh = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {loading ? (
-            <p>Đang tải dữ liệu...</p>
+            <p className="text-center col-span-3">Đang tải dữ liệu...</p>
+          ) : error ? (
+            <p className="text-center col-span-3 text-red-500">Lỗi: {error}</p>
           ) : (
-            admissionsData.map((item, index) => (
+            admissionsData.map((major) => (
               <AdmissionCard
-                key={index}
-                icon={item.icon}
-                title={item.title}
-                code={`Mã ngành: ${item.code}`}
-                quota={`Chỉ tiêu tuyển sinh năm 2025: ${item.quota} chỉ tiêu`}
+                key={major.majorCode}
+                icon={<IconTuyenSinh className="w-8 h-8" />}
+                title={major.majorName}
+                code={`Mã ngành: ${major.majorCode}`}
+                quota={`Chỉ tiêu tuyển sinh năm 2025: ${major.quota} chỉ tiêu`}
               />
             ))
           )}
