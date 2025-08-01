@@ -13,17 +13,41 @@ const DangNhap = () => {
     navigate("/dang-ky");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Thêm logic xác thực đăng nhập ở đây
-    // Ví dụ: gọi API để xác thực
-    // Sau khi xác thực thành công:
-    console.log("Sinh viên đăng nhập thành công");
 
-    // Giả lập đăng nhập thành công và lưu trạng thái
-    localStorage.setItem("isStudentAuthenticated", "true");
-
-    navigate("/nop-ho-so");
+    try {
+      const res = await fetch("http://localhost:8081/api/student/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          citizenId: cccd,
+          password: password,
+        }),
+      });
+      const data = await res.json();
+      if (data.success && data.user) {
+        localStorage.setItem("isStudentAuthenticated", "true");
+        localStorage.setItem("studentUser", JSON.stringify(data.user));
+        // Tách họ đệm và tên từ fullName (nếu cần)
+        const [hoDem, ...tenArr] = (data.user.fullName || "").split(" ");
+        const ten = tenArr.join(" ");
+        navigate("/thong-tin-ca-nhan", {
+          state: {
+            student: {
+              cccd: data.user.citizenId,
+              hoDem: hoDem,
+              ten: ten,
+              email: data.user.email,
+            },
+          },
+        });
+      } else {
+        alert(data.message || "Đăng nhập thất bại!");
+      }
+    } catch (error) {
+      alert("Có lỗi xảy ra khi đăng nhập!");
+    }
   };
 
   return (

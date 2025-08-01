@@ -21,7 +21,7 @@ const DangKy = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.email !== formData.confirmEmail) {
       alert("Email không khớp!");
@@ -35,10 +35,30 @@ const DangKy = () => {
       alert("Mật khẩu không khớp!");
       return;
     }
-    // TODO: Gửi dữ liệu đăng ký đến backend
-    console.log("Form data submitted:", formData);
-    alert("Sinh viên đăng ký thành công! Vui lòng đăng nhập.");
-    navigate("/dang-nhap");
+
+    const body = {
+      citizenId: formData.cccd,
+      fullName: `${formData.hoDem} ${formData.ten}`.trim(),
+      password: formData.password,
+      email: formData.email,
+    };
+
+    try {
+      const res = await fetch("http://localhost:8081/api/student/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert("Sinh viên đăng ký thành công! Vui lòng đăng nhập.");
+        navigate("/dang-nhap");
+      } else {
+        alert(data.message || "Đăng ký thất bại!");
+      }
+    } catch (error) {
+      alert("Có lỗi xảy ra khi đăng ký!");
+    }
   };
 
   return (

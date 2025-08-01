@@ -2,19 +2,38 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AdminLoginPage = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Logic đăng nhập của quản trị viên sẽ được xử lý ở backend trong tương lai.
-    console.log("Admin Login Attempt:", { email, password });
+    setErrorMsg("");
 
-    // Giả lập đăng nhập thành công và lưu trạng thái
-    localStorage.setItem("isAdminAuthenticated", "true");
+    try {
+      const res = await fetch("http://localhost:8081/api/admin/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      });
+      const data = await res.json();
 
-    navigate("/admin/dashboard");
+      if (data.success) {
+        localStorage.setItem("isAdminAuthenticated", "true");
+        localStorage.setItem("adminUser", JSON.stringify(data.user));
+        navigate("/admin/dashboard");
+      } else {
+        setErrorMsg("Server: " + data.message || "Đăng nhập thất bại!");
+      }
+    } catch (error) {
+      setErrorMsg("Có lỗi xảy ra, vui lòng thử lại!");
+    }
   };
 
   return (
@@ -31,19 +50,19 @@ const AdminLoginPage = () => {
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
-              <label htmlFor="email-address" className="sr-only">
-                Địa chỉ email
+              <label htmlFor="username" className="sr-only">
+                Tên đăng nhập
               </label>
               <input
-                id="email-address"
-                name="email"
-                type="email"
-                autoComplete="email"
+                id="username"
+                name="username"
+                type="text"
+                autoComplete="username"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm"
-                placeholder="Địa chỉ email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Tên đăng nhập"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div>
@@ -63,7 +82,9 @@ const AdminLoginPage = () => {
               />
             </div>
           </div>
-
+          {errorMsg && (
+            <div className="text-red-600 text-sm mb-2">{errorMsg}</div>
+          )}
           <div>
             <button
               type="submit"
