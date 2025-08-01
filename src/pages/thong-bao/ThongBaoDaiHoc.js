@@ -67,14 +67,15 @@ const ThongBaoDaiHoc = () => {
           throw new Error("Lỗi khi kết nối tới máy chủ.");
         }
         const result = await response.json();
-        if (result.status === "success") {
+        if (result.status === "success" && result.data) {
           setArticles(result.data);
-          setTotalPages(result.pagination.totalPages || 1);
+          setTotalPages(result.pagination?.totalPages || 1);
         } else {
-          throw new Error("API trả về lỗi.");
+          setArticles([]);
         }
       } catch (err) {
         setError(err.message);
+        setArticles([]);
       } finally {
         setLoading(false);
       }

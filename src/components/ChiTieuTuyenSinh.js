@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import IconTuyenSinh from "./ui/IconTuyenSinh";
 
 const AdmissionCard = ({ icon, title, code, quota }) => {
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6 text-center shadow-md hover:shadow-xl transition-shadow">
       <div className="flex justify-center mb-4">
         <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center">
-          <img src={icon} alt={`Icon for ${title}`} className="w-8 h-8" />
+          {icon}
         </div>
       </div>
       <h4 className="text-xl font-bold text-gray-800 h-16 flex items-center justify-center">
@@ -144,7 +145,7 @@ const ChiTieuTuyenSinh = () => {
             admissionsData.map((major) => (
               <AdmissionCard
                 key={major.majorCode}
-                icon="https://placehold.co/64x64/fef2f2/ef4444?text=ICON"
+                icon={<IconTuyenSinh className="w-8 h-8" />}
                 title={major.majorName}
                 code={`Mã ngành: ${major.majorCode}`}
                 quota={`Chỉ tiêu tuyển sinh năm 2025: ${major.quota} chỉ tiêu`}

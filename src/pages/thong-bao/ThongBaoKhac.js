@@ -1,104 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "../../components/ui/Card";
-
-const data = [
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "23/06/2025",
-    title:
-      "Thông báo điểm chuẩn xét trúng tuyển và Quyết định phê duyệt danh sách thí sinh trúng tuyển đại học theo hình thức Giáo dục từ xa đợt 1 năm 2025",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "03/06/2025",
-    title: "Thông báo tuyển sinh Vừa làm vừa học trình độ đại học năm 2025",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "30/05/2025",
-    title: "Thông tin tuyển sinh năm 2025 (Hình thức đào tạo: Đại học từ xa)",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "29/05/2025",
-    title: "Thông tin tuyển sinh năm 2025 (Hình thức đào tạo: Vừa làm vừa học)",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "15/04/2025",
-    title: "Thông báo điểm chuẩn xét trúng tuyển Đại học theo hình thức GDTX",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "23/01/2025",
-    title: "Thông báo tuyển sinh đào tạo từ xa trình độ đại học đợt 1 năm 2025",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "03/10/2024",
-    title:
-      "Thông báo Điểm chuẩn xét trúng tuyển đại học theo hình thức Giáo dục từ xa Đợt 4 Năm 2024",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "17/09/2024",
-    title:
-      "Thông báo điểm chuẩn xét trúng tuyển và quyết định phê duyệt danh sách thí sinh trúng tuyển đại học theo hình thức Giáo dục từ xa đợt 1 năm 2024",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "19/04/2024",
-    title: "Thông báo tuyển sinh Vừa làm vừa học trình độ đại học năm 2024",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "05/04/2024",
-    title: "Thông báo tuyển sinh đào tạo từ xa trình độ đại học đợt 1 năm 2024",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "21/12/2023",
-    title:
-      "Thông báo quyết định phê duyệt danh sách thí sinh trúng tuyển đại học theo hình thức Giáo dục từ xa đợt 1 năm 2024",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "02/10/2023",
-    title:
-      "Thông báo điểm chuẩn xét trúng tuyển và quyết định phê duyệt danh sách thí sinh trúng tuyển đại học theo hình thức Giáo dục từ xa đợt 1 năm 2024",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "20/06/2025",
-    title: "Thông báo về các khóa học ngắn hạn cấp chứng chỉ chuyên nghiệp",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "18/06/2025",
-    title: "Tuyển sinh các lớp bồi dưỡng theo tiêu chuẩn chức danh nghề nghiệp",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "15/06/2025",
-    title:
-      "Thông báo tuyển sinh chương trình liên kết quốc tế 2+2 với Đại học La Trobe, Úc",
-  },
-];
 
 const ArrowButton = ({ onClick, direction, disabled }) => (
   <button
@@ -145,21 +46,51 @@ const ArrowButton = ({ onClick, direction, disabled }) => (
 );
 
 const ThongBaoKhac = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
+  const [articles, setArticles] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  useEffect(() => {
+    const fetchArticles = async () => {
+      setLoading(true);
+      setError(null);
+      const category = "thong-bao";
+      const subcategory = "tuyen-sinh-khac";
 
-  const handleNext = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  };
+      try {
+        const response = await fetch(
+          `http://localhost:8081/api/articles/${category}/${subcategory}/${page}`
+        );
+        if (!response.ok) {
+          throw new Error("Lỗi khi kết nối tới máy chủ.");
+        }
+        const result = await response.json();
+        if (result.status === "success" && result.data) {
+          setArticles(result.data);
+          setTotalPages(result.pagination?.totalPages || 1);
+        } else {
+          setArticles([]);
+        }
+      } catch (err) {
+        setError(err.message);
+        setArticles([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticles();
+  }, [page]);
 
   const handlePrev = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 1));
+    setPage((prevPage) => Math.max(prevPage - 1, 1));
   };
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const selectedData = data.slice(startIndex, startIndex + itemsPerPage);
+  const handleNext = () => {
+    setPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  };
 
   return (
     <div className="bg-gray-50 py-12">
@@ -202,33 +133,43 @@ const ThongBaoKhac = () => {
           Tuyển sinh khác
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {selectedData.map((item, index) => (
-            <Card
-              key={startIndex + index}
-              image={item.image}
-              date={item.date}
-              title={item.title}
-            />
-          ))}
-        </div>
+        {loading && <p className="text-center">Đang tải bài viết...</p>}
+        {error && <p className="text-center text-red-500">Lỗi: {error}</p>}
 
-        {totalPages > 1 && (
-          <div className="flex justify-center items-center mt-12 space-x-4">
-            <ArrowButton
-              onClick={handlePrev}
-              direction="left"
-              disabled={currentPage === 1}
-            />
-            <span className="text-gray-700 font-semibold">
-              Trang {currentPage} / {totalPages}
-            </span>
-            <ArrowButton
-              onClick={handleNext}
-              direction="right"
-              disabled={currentPage === totalPages}
-            />
-          </div>
+        {!loading && !error && (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {articles.map((article) => (
+                <Card
+                  key={article.id}
+                  image="https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png"
+                  date={new Date(article.publishedDate).toLocaleDateString(
+                    "vi-VN"
+                  )}
+                  title={article.title}
+                  href={`/thong-bao/${article.id}`}
+                />
+              ))}
+            </div>
+
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center mt-12 space-x-4">
+                <ArrowButton
+                  onClick={handlePrev}
+                  direction="left"
+                  disabled={page === 1}
+                />
+                <span className="font-semibold">
+                  {page} / {totalPages}
+                </span>
+                <ArrowButton
+                  onClick={handleNext}
+                  direction="right"
+                  disabled={page === totalPages}
+                />
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

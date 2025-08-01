@@ -1,70 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "../../components/ui/Card";
-
-const data = [
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1716377000540-untitled-1024x530.png",
-    date: "22/05/2024",
-    title:
-      "BẢNG XẾP HẠNG SCIMAGO 2024 VIỆT NAM: PTIT XẾP THỨ 1 VỀ CHỈ SỐ ĐỔI MỚI",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1716377380939-untitled2.png",
-    date: "22/05/2024",
-    title:
-      "PTIT VÀ 4 TRƯỜNG ĐẠI HỌC HÀN QUỐC TRANH TÀI TẠI CUỘC THI “PTIT-CAU HACKATHON 2024”",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715841511649-untitled.png",
-    date: "16/05/2024",
-    title:
-      "HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG RA MẮT “CỔNG TRI THỨC PTIT”",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715842204963-untitled.png",
-    date: "16/05/2024",
-    title:
-      "Ý TƯỞNG DIGITAL HUMAN GIÀNH GIẢI NHẤT TẠI CHUNG KẾT CUỘC THI P-INNOVATION 2024",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715755661388-1_12.jpg",
-    date: "15/05/2024",
-    title:
-      "HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG HỢP TÁC VỚI CÔNG TY CỔ PHẦN EON REALITY VIETNAM",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715572583078-anh_tot_nghiep-1024x537.jpg",
-    date: "13/05/2024",
-    title:
-      "HƠN 1.000 TÂN TIẾN SỸ, TÂN THẠC SỸ VÀ TÂN KỸ SƯ HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG ĐƯỢC CẤP BẰNG TỐT NGHIỆP",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715572656099-2_7_300x198.jpg",
-    date: "13/05/2024",
-    title:
-      "HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG CÙNG LÃNH ĐẠO TỈNH GUNMA (NHẬT BẢN) THẢO LUẬN VỀ HỢP TÁC GIÁO DỤC",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715224042108-438263782_747347837562565_2366140221768122841_n.jpg",
-    date: "09/05/2024",
-    title: "LỄ KỶ NIỆM 25 NĂM THÀNH LẬP KHOA CÔNG NGHỆ THÔNG TIN 1 (1999-2024)",
-  },
-  {
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715135599419-tet_lao_1-1024x768.jpeg",
-    date: "08/05/2024",
-    title:
-      "Học viện Công nghệ Bưu chính viễn thông tổ chức chúc mừng các Lưu học sinh Lào tốt nghiệp",
-  },
-];
 
 const ArrowButton = ({ onClick, direction, disabled }) => (
   <button
@@ -111,21 +46,51 @@ const ArrowButton = ({ onClick, direction, disabled }) => (
 );
 
 const TinTucSuKien = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
+  const [articles, setArticles] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  useEffect(() => {
+    const fetchArticles = async () => {
+      setLoading(true);
+      setError(null);
+      const category = "tin-tuc";
+      const subcategory = "hoat-dong-su-kien";
 
-  const handleNext = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  };
+      try {
+        const response = await fetch(
+          `http://localhost:8081/api/articles/${category}/${subcategory}/${page}`
+        );
+        if (!response.ok) {
+          throw new Error("Lỗi khi kết nối tới máy chủ.");
+        }
+        const result = await response.json();
+        if (result.status === "success" && result.data) {
+          setArticles(result.data);
+          setTotalPages(result.pagination?.totalPages || 1);
+        } else {
+          setArticles([]);
+        }
+      } catch (err) {
+        setError(err.message);
+        setArticles([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticles();
+  }, [page]);
 
   const handlePrev = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 1));
+    setPage((prevPage) => Math.max(prevPage - 1, 1));
   };
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const selectedData = data.slice(startIndex, startIndex + itemsPerPage);
+  const handleNext = () => {
+    setPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  };
 
   return (
     <div className="bg-gray-50 py-12">
@@ -168,33 +133,43 @@ const TinTucSuKien = () => {
           Hoạt động & Sự kiện
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {selectedData.map((item, index) => (
-            <Card
-              key={startIndex + index}
-              image={item.image}
-              date={item.date}
-              title={item.title}
-            />
-          ))}
-        </div>
+        {loading && <p className="text-center">Đang tải bài viết...</p>}
+        {error && <p className="text-center text-red-500">Lỗi: {error}</p>}
 
-        {totalPages > 1 && (
-          <div className="flex justify-center items-center mt-12 space-x-4">
-            <ArrowButton
-              onClick={handlePrev}
-              direction="left"
-              disabled={currentPage === 1}
-            />
-            <span className="text-gray-700 font-semibold">
-              Trang {currentPage} / {totalPages}
-            </span>
-            <ArrowButton
-              onClick={handleNext}
-              direction="right"
-              disabled={currentPage === totalPages}
-            />
-          </div>
+        {!loading && !error && (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {articles.map((article) => (
+                <Card
+                  key={article.id}
+                  image="https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715650686861-2.png"
+                  date={new Date(article.publishedDate).toLocaleDateString(
+                    "vi-VN"
+                  )}
+                  title={article.title}
+                  href={`/tin-tuc/${article.id}`}
+                />
+              ))}
+            </div>
+
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center mt-12 space-x-4">
+                <ArrowButton
+                  onClick={handlePrev}
+                  direction="left"
+                  disabled={page === 1}
+                />
+                <span className="font-semibold">
+                  {page} / {totalPages}
+                </span>
+                <ArrowButton
+                  onClick={handleNext}
+                  direction="right"
+                  disabled={page === totalPages}
+                />
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
