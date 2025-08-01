@@ -1,155 +1,81 @@
-import { useState, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-
-const applicationData = [
-  {
-    id: 1,
-    hoTen: "Nguyễn Văn An",
-    ngayNop: "2025-07-15",
-    phuongThuc: "Xét tuyển tài năng",
-    trangThai: "Chờ duyệt",
-  },
-  {
-    id: 2,
-    hoTen: "Trần Thị Bình",
-    ngayNop: "2025-07-16",
-    phuongThuc: "Kết quả thi THPT",
-    trangThai: "Đã duyệt",
-  },
-  {
-    id: 3,
-    hoTen: "Lê Văn Cường",
-    ngayNop: "2025-07-17",
-    phuongThuc: "Xét tuyển tài năng",
-    trangThai: "Từ chối",
-  },
-  {
-    id: 4,
-    hoTen: "Phạm Thị Dung",
-    ngayNop: "2025-07-18",
-    phuongThuc: "Kết hợp",
-    trangThai: "Chờ duyệt",
-  },
-  {
-    id: 5,
-    hoTen: "Hoàng Văn Em",
-    ngayNop: "2025-07-19",
-    phuongThuc: "Kết quả thi THPT",
-    trangThai: "Đã duyệt",
-  },
-  {
-    id: 6,
-    hoTen: "Nguyễn Thị Hoa",
-    ngayNop: "2025-07-20",
-    phuongThuc: "Xét tuyển tài năng",
-    trangThai: "Chờ duyệt",
-  },
-  {
-    id: 7,
-    hoTen: "Trần Văn Hùng",
-    ngayNop: "2025-07-21",
-    phuongThuc: "Kết quả thi THPT",
-    trangThai: "Từ chối",
-  },
-  {
-    id: 8,
-    hoTen: "Lê Thị Lan",
-    ngayNop: "2025-07-22",
-    phuongThuc: "Kết hợp",
-    trangThai: "Chờ duyệt",
-  },
-  {
-    id: 9,
-    hoTen: "Phạm Văn Minh",
-    ngayNop: "2025-07-23",
-    phuongThuc: "Xét tuyển tài năng",
-    trangThai: "Đã duyệt",
-  },
-  {
-    id: 10,
-    hoTen: "Nguyễn Văn Tèo",
-    ngayNop: "2025-07-24",
-    phuongThuc: "Kết quả thi THPT",
-    trangThai: "Chờ duyệt",
-  },
-  {
-    id: 11,
-    hoTen: "Trần Thị Tí",
-    ngayNop: "2025-07-25",
-    phuongThuc: "Kết hợp",
-    trangThai: "Từ chối",
-  },
-  {
-    id: 12,
-    hoTen: "Lê Văn Tú",
-    ngayNop: "2025-07-26",
-    phuongThuc: "Xét tuyển tài năng",
-    trangThai: "Chờ duyệt",
-  },
-  {
-    id: 13,
-    hoTen: "Phạm Thị Vân",
-    ngayNop: "2025-07-27",
-    phuongThuc: "Kết quả thi THPT",
-    trangThai: "Đã duyệt",
-  },
-  {
-    id: 14,
-    hoTen: "Hoàng Văn Quân",
-    ngayNop: "2025-07-28",
-    phuongThuc: "Kết hợp",
-    trangThai: "Chờ duyệt",
-  },
-  {
-    id: 15,
-    hoTen: "Nguyễn Thị Mai",
-    ngayNop: "2025-07-29",
-    phuongThuc: "Xét tuyển tài năng",
-    trangThai: "Từ chối",
-  },
-];
 
 const PAGE_SIZE = 10;
 
 const AdminStudentApplicationsPage = () => {
-  const [applications, setApplications] = useState(applicationData);
+  const [applications, setApplications] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [selectedDetail, setSelectedDetail] = useState(null);
   const navigate = useNavigate();
 
+  // Fetch danh sách hồ sơ
+  useEffect(() => {
+    const fetchApplications = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(
+          `http://localhost:8081/api/application/list?applicationYear=2025&page=${page - 1}&size=${PAGE_SIZE}`
+        );
+        const data = await res.json();
+        setApplications(data.content || []);
+        setTotalPages(data.totalPages || 1);
+      } catch (err) {
+        setApplications([]);
+      }
+      setLoading(false);
+    };
+    fetchApplications();
+  }, [page]);
+
+  // Lọc theo tên và trạng thái
   const filteredApplications = useMemo(() => {
-    const filtered = applications
+    return applications
       .filter((app) =>
-        app.hoTen.toLowerCase().includes(searchTerm.toLowerCase())
+        app.fullName.toLowerCase().includes(searchTerm.toLowerCase())
       )
       .filter(
-        (app) => statusFilter === "all" || app.trangThai === statusFilter
+        (app) =>
+          statusFilter === "all" ||
+          (statusFilter === "Chờ duyệt" && app.status === "pending") ||
+          (statusFilter === "Đã duyệt" && app.status === "approved") ||
+          (statusFilter === "Từ chối" && app.status === "rejected")
       );
-    setPage(1);
-    return filtered;
   }, [applications, searchTerm, statusFilter]);
 
-  const totalPages = useMemo(() => {
-    return Math.ceil(filteredApplications.length / PAGE_SIZE);
-  }, [filteredApplications]);
-
-  const paginatedApplications = useMemo(() => {
-    const startIndex = (page - 1) * PAGE_SIZE;
-    return filteredApplications.slice(startIndex, startIndex + PAGE_SIZE);
-  }, [filteredApplications, page]);
-
-  const handleStatusChange = (id, newStatus) => {
-    setApplications(
-      applications.map((app) =>
-        app.id === id ? { ...app, trangThai: newStatus } : app
-      )
-    );
+  // Duyệt/từ chối hồ sơ
+  const handleStatusChange = async (id, newStatus) => {
+    try {
+      await fetch(`http://localhost:8081/api/application/update-status/${id}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: newStatus }),
+      });
+      // Sau khi cập nhật, reload lại danh sách
+      const res = await fetch(
+        `http://localhost:8081/api/application/list?applicationYear=2025&page=${page - 1}&size=${PAGE_SIZE}`
+      );
+      const data = await res.json();
+      setApplications(data.content || []);
+    } catch (err) {
+      alert("Cập nhật trạng thái thất bại!");
+    }
   };
 
-  const handlePageChange = (newPage) => {
-    if (newPage >= 1 && newPage <= totalPages) {
-      setPage(newPage);
+  // Xem chi tiết hồ sơ
+  const handleViewDetail = async (id) => {
+    try {
+      const res = await fetch(
+        `http://localhost:8081/api/application/detail/${id}`
+      );
+      const data = await res.json();
+      setSelectedDetail(data);
+    } catch (err) {
+      setSelectedDetail(null);
     }
   };
 
@@ -166,7 +92,7 @@ const AdminStudentApplicationsPage = () => {
         <div className="mb-6 flex flex-col md:flex-row gap-4">
           <input
             type="text"
-            placeholder="Tìm kiếm theo tên, phương thức..."
+            placeholder="Tìm kiếm theo tên"
             className="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 w-full md:w-1/3"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -194,7 +120,10 @@ const AdminStudentApplicationsPage = () => {
                   Ngày nộp
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Phương thức
+                  Chứng chỉ
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Điểm
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Trạng thái
@@ -205,44 +134,56 @@ const AdminStudentApplicationsPage = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {paginatedApplications.map((app) => (
+              {filteredApplications.map((app) => (
                 <tr key={app.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                    {app.hoTen}
+                    {app.fullName}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-gray-600">
-                    {app.ngayNop}
+                    {app.submissionDate
+                      ? new Date(app.submissionDate).toLocaleDateString("vi-VN")
+                      : ""}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-gray-600">
-                    {app.phuongThuc}
+                    {app.certificate}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-600">
+                    {app.score}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span
                       className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                        app.trangThai === "Đã duyệt"
+                        app.status === "approved"
                           ? "bg-green-100 text-green-800"
-                          : app.trangThai === "Từ chối"
+                          : app.status === "rejected"
                           ? "bg-red-100 text-red-800"
                           : "bg-yellow-100 text-yellow-800"
                       }`}
                     >
-                      {app.trangThai}
+                      {app.status === "pending"
+                        ? "Chờ duyệt"
+                        : app.status === "approved"
+                        ? "Đã duyệt"
+                        : "Từ chối"}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <button className="text-indigo-600 hover:text-indigo-900 font-semibold">
+                    <button
+                      className="text-indigo-600 hover:text-indigo-900 font-semibold"
+                      onClick={() => handleViewDetail(app.id)}
+                    >
                       Xem chi tiết
                     </button>
-                    {app.trangThai === "Chờ duyệt" && (
+                    {app.status === "pending" && (
                       <>
                         <button
-                          onClick={() => handleStatusChange(app.id, "Đã duyệt")}
+                          onClick={() => handleStatusChange(app.id, "approved")}
                           className="ml-4 text-green-600 hover:text-green-800 font-semibold"
                         >
                           Duyệt
                         </button>
                         <button
-                          onClick={() => handleStatusChange(app.id, "Từ chối")}
+                          onClick={() => handleStatusChange(app.id, "rejected")}
                           className="ml-4 text-red-600 hover:text-red-800 font-semibold"
                         >
                           Từ chối
@@ -252,9 +193,9 @@ const AdminStudentApplicationsPage = () => {
                   </td>
                 </tr>
               ))}
-              {paginatedApplications.length === 0 && (
+              {filteredApplications.length === 0 && (
                 <tr>
-                  <td colSpan="5" className="text-center py-4 text-gray-500">
+                  <td colSpan="6" className="text-center py-4 text-gray-500">
                     Không có hồ sơ nào.
                   </td>
                 </tr>
@@ -263,11 +204,70 @@ const AdminStudentApplicationsPage = () => {
           </table>
         </div>
 
+        {/* Chi tiết hồ sơ popup/modal đơn giản */}
+        {selectedDetail && (
+          <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-lg relative">
+              <button
+                className="absolute top-2 right-3 text-gray-500 hover:text-gray-700"
+                onClick={() => setSelectedDetail(null)}
+              >
+                Đóng
+              </button>
+              <h2 className="text-xl font-bold mb-4">Chi tiết hồ sơ</h2>
+              <div className="space-y-2">
+                <div>
+                  <strong>Họ tên:</strong> {selectedDetail.fullName}
+                </div>
+                <div>
+                  <strong>Số CCCD:</strong> {selectedDetail.citizenId}
+                </div>
+                <div>
+                  <strong>Ngày nộp:</strong>{" "}
+                  {selectedDetail.submissionDate
+                    ? new Date(selectedDetail.submissionDate).toLocaleString(
+                        "vi-VN"
+                      )
+                    : ""}
+                </div>
+                <div>
+                  <strong>Địa chỉ:</strong> {selectedDetail.addr}
+                </div>
+                <div>
+                  <strong>Chứng chỉ:</strong> {selectedDetail.certificate}
+                </div>
+                <div>
+                  <strong>Điểm:</strong> {selectedDetail.score}
+                </div>
+                <div>
+                  <strong>Trạng thái:</strong>{" "}
+                  {selectedDetail.status === "pending"
+                    ? "Chờ duyệt"
+                    : selectedDetail.status === "approved"
+                    ? "Đã duyệt"
+                    : "Từ chối"}
+                </div>
+                <div>
+                  <strong>Năm ứng tuyển:</strong> {selectedDetail.applicationYear}
+                </div>
+                <div>
+                  <strong>Trường THPT:</strong>{" "}
+                  {selectedDetail.additionalInfo?.highSchool || ""}
+                </div>
+                <div>
+                  <strong>Đối tượng ưu tiên:</strong>{" "}
+                  {selectedDetail.additionalInfo?.priority || ""}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {totalPages > 1 && (
           <div className="flex justify-center items-center gap-2 mt-6">
             <button
               className="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
-              onClick={() => handlePageChange(page - 1)}
+              onClick={() => setPage(page - 1)}
               disabled={page === 1}
             >
               &lt;
@@ -277,7 +277,7 @@ const AdminStudentApplicationsPage = () => {
             </span>
             <button
               className="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
-              onClick={() => handlePageChange(page + 1)}
+              onClick={() => setPage(page + 1)}
               disabled={page === totalPages}
             >
               &gt;

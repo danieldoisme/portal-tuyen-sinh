@@ -1,52 +1,29 @@
 import { useState } from "react";
 
-const data = [
-  {
-    hoTen: "Nguyễn Văn An",
-    ngaySinh: "15/08/2006",
-    soBaoDanh: "PTIT00123",
-    cccd: "012345678910",
-    dvut: "Không",
-    kvut: "KV3",
-    diemKQXT: 27.5,
-    toHop: "A00",
-    ketQua: "Trúng tuyển",
-  },
-  {
-    hoTen: "Trần Thị Bình",
-    ngaySinh: "20/05/2006",
-    soBaoDanh: "PTIT00456",
-    cccd: "098765432109",
-    dvut: "Không",
-    kvut: "KV2-NT",
-    diemKQXT: 26.8,
-    toHop: "A01",
-    ketQua: "Trúng tuyển",
-  },
-  {
-    hoTen: "Lê Văn Cường",
-    ngaySinh: "10/11/2006",
-    soBaoDanh: "PTIT00789",
-    cccd: "112233445566",
-    dvut: "Không",
-    kvut: "KV1",
-    diemKQXT: 28.1,
-    toHop: "D01",
-    ketQua: "Trúng tuyển",
-  },
-];
-
 const TraCuuTuyenSinh = () => {
   const [cccd, setCccd] = useState("");
   const [result, setResult] = useState(null);
   const [searched, setSearched] = useState(false);
 
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
-    const foundResult =
-      data.find((student) => student.cccd === cccd.trim()) || null;
-    setResult(foundResult);
     setSearched(true);
+    setResult(null);
+
+    try {
+      const res = await fetch(
+        `http://localhost:8081/api/application/result?citizenId=${cccd.trim()}`
+      );
+      const data = await res.json();
+
+      if (Array.isArray(data) && data.length > 0) {
+        setResult(data);
+      } else {
+        setResult(null);
+      }
+    } catch (error) {
+      setResult(null);
+    }
   };
 
   return (
@@ -111,12 +88,9 @@ const TraCuuTuyenSinh = () => {
                     <tr>
                       {[
                         "Họ và tên",
-                        "Ngày sinh",
-                        "Số báo danh",
-                        "ĐVƯT",
-                        "KVƯT",
-                        "Điểm KQXT",
-                        "Tổ hợp",
+                        "Số báo danh/CCCD",
+                        "Chứng chỉ",
+                        "Điểm xét tuyển",
                         "Kết quả xét tuyển",
                       ].map((header) => (
                         <th
@@ -131,35 +105,65 @@ const TraCuuTuyenSinh = () => {
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                     {searched && result ? (
-                      <tr>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                          {result.hoTen}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {result.ngaySinh}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {result.soBaoDanh}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {result.dvut}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {result.kvut}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {result.diemKQXT}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {result.toHop}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-green-600">
-                          {result.ketQua}
-                        </td>
-                      </tr>
+                      Array.isArray(result) ? (
+                        result.map((item) => (
+                          <tr key={item.id}>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                              {item.fullName}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {item.citizenId}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {item.certificate}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {item.score}
+                            </td>
+                            <td
+                              className={`px-6 py-4 whitespace-nowrap text-sm font-semibold
+                                ${
+                                  item.status === "approved"
+                                    ? "text-green-600"
+                                    : item.status === "rejected"
+                                    ? "text-red-600"
+                                    : "text-gray-500"
+                                }
+                              `}
+                            >
+                              {item.status === "pending"
+                                ? "Chờ duyệt"
+                                : item.status === "approved"
+                                ? "Trúng tuyển"
+                                : "Từ chối"}
+                            </td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan="5" className="px-6 py-16 text-center">
+                            <div className="flex flex-col items-center text-gray-400">
+                              <svg
+                                className="w-12 h-12 mb-2"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="1"
+                                  d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                                />
+                              </svg>
+                              <p>Trống</p>
+                            </div>
+                          </td>
+                        </tr>
+                      )
                     ) : (
                       <tr>
-                        <td colSpan="8" className="px-6 py-16 text-center">
+                        <td colSpan="5" className="px-6 py-16 text-center">
                           <div className="flex flex-col items-center text-gray-400">
                             <svg
                               className="w-12 h-12 mb-2"

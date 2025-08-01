@@ -27,21 +27,22 @@ const DangNhap = () => {
       });
       const data = await res.json();
       if (data.success && data.user) {
-        localStorage.setItem("isStudentAuthenticated", "true");
         localStorage.setItem("studentUser", JSON.stringify(data.user));
+        localStorage.setItem("isStudentAuthenticated", "true");
+        navigate("/nop-ho-so");
         // Tách họ đệm và tên từ fullName (nếu cần)
-        const [hoDem, ...tenArr] = (data.user.fullName || "").split(" ");
-        const ten = tenArr.join(" ");
-        navigate("/thong-tin-ca-nhan", {
-          state: {
-            student: {
-              cccd: data.user.citizenId,
-              hoDem: hoDem,
-              ten: ten,
-              email: data.user.email,
-            },
-          },
-        });
+        // const [hoDem, ...tenArr] = (data.user.fullName || "").split(" ");
+        // const ten = tenArr.join(" ");
+        // navigate("/thong-tin-ca-nhan", {
+        //   state: {
+        //     student: {
+        //       cccd: data.user.citizenId,
+        //       hoDem: hoDem,
+        //       ten: ten,
+        //       email: data.user.email,
+        //     },
+        //   },
+        // });
       } else {
         alert(data.message || "Đăng nhập thất bại!");
       }

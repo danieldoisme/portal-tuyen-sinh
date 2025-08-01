@@ -147,7 +147,7 @@ const TinTucBaoChi = () => {
                     "vi-VN"
                   )}
                   title={article.title}
-                  href={`/tin-tuc/${article.id}`}
+                  href={`/tin-tuc/thong-tin-bao-chi/${article.id}`} // Chuyển hướng đến để xem chi tiết bài viết
                 />
               ))}
             </div>

@@ -7,7 +7,7 @@ import CustomUploadAdapterPlugin from "./api/CustomUploadAdapterPlugin";
 const AdminPostCreationPage = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [category, setCategory] = useState("news");
+  const [category, setCategory] = useState("tin-tuc");
   const [subCategory, setSubCategory] = useState("");
   const [image, setImage] = useState(null);
   const [summary, setSummary] = useState("");

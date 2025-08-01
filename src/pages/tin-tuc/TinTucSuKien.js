@@ -147,7 +147,7 @@ const TinTucSuKien = () => {
                     "vi-VN"
                   )}
                   title={article.title}
-                  href={`/tin-tuc/${article.id}`}
+                  href={`/tin-tuc/hoat-dong-su-kien/${article.id}`}
                 />
               ))}
             </div>

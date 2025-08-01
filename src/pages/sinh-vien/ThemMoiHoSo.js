@@ -6,11 +6,14 @@ const ThemMoiHoSo = () => {
   const navigate = useNavigate();
   const phuongThucId = searchParams.get("phuong-thuc");
 
+  const student = JSON.parse(localStorage.getItem("studentUser")) || {};
+
   const [formData, setFormData] = useState({
-    hoTen: "",
     diaChi: "",
     tenChungChi: "IELTS",
     diem: "",
+    highSchool: "",
+    priority: "",
   });
 
   const [phuongThucTitle, setPhuongThucTitle] = useState("");
@@ -18,6 +21,7 @@ const ThemMoiHoSo = () => {
   const scoreAttributes = {
     IELTS: { placeholder: "Ví dụ: 7.5", step: "0.5", max: "9.0" },
     TOEFL: { placeholder: "Ví dụ: 90", step: "1", max: "120" },
+    TOEIC: { placeholder: "Ví dụ: 990", step: "5", max: "990" }, // Thêm TOEIC
   };
 
   useEffect(() => {
@@ -43,7 +47,6 @@ const ThemMoiHoSo = () => {
         diem: "",
       }));
     } else if (name === "diem") {
-      // Allow only numbers and a single dot
       const sanitizedValue = value
         .replace(/[^0-9.]/g, "")
         .replace(/(\..*)\./g, "$1");
@@ -73,19 +76,48 @@ const ThemMoiHoSo = () => {
       newScore = Math.max(currentScore - step, 0);
     }
 
-    // Format to handle potential floating point inaccuracies
     const decimalPlaces = (step.toString().split(".")[1] || []).length;
     setFormData((prev) => ({ ...prev, diem: newScore.toFixed(decimalPlaces) }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Hồ sơ sinh viên đã nộp:", {
-      ...formData,
-      phuongThuc: phuongThucId,
-    });
-    alert("Sinh viên đã nộp hồ sơ thành công!");
-    navigate("/nop-ho-so/xet-tuyen");
+
+    const student = JSON.parse(localStorage.getItem("studentUser")) || {};
+
+    const now = new Date();
+    const submissionDate = now.toISOString();
+    const applicationYear = now.getFullYear();
+
+    const body = {
+      citizenId: student.citizenId,
+      submissionDate,
+      addr: formData.diaChi,
+      certificate: formData.tenChungChi,
+      score: formData.diem ? Number(formData.diem) : null,
+      additionalInfo: {
+        highSchool: formData.highSchool,
+        priority: formData.priority,
+      },
+      applicationYear,
+    };
+
+    try {
+      const res = await fetch("http://localhost:8081/api/application/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert("Sinh viên đã nộp hồ sơ thành công!");
+        navigate("/nop-ho-so/xet-tuyen");
+      } else {
+        alert(data.message || "Nộp hồ sơ thất bại!");
+      }
+    } catch (error) {
+      alert("Có lỗi xảy ra khi nộp hồ sơ!");
+    }
   };
 
   if (phuongThucId !== "4") {
@@ -104,23 +136,41 @@ const ThemMoiHoSo = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label
-                htmlFor="hoTen"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Họ và tên
-              </label>
-              <input
-                type="text"
-                id="hoTen"
-                name="hoTen"
-                value={formData.hoTen}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
-                placeholder="Nguyễn Văn A"
-              />
+            {/* Thông tin cá nhân không cho sửa */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Họ tên
+                </label>
+                <input
+                  type="text"
+                  value={student.fullName || ""}
+                  readOnly
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Số CMND/CCCD
+                </label>
+                <input
+                  type="text"
+                  value={student.citizenId || ""}
+                  readOnly
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  value={student.email || ""}
+                  readOnly
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                />
+              </div>
             </div>
 
             <div>
@@ -159,6 +209,7 @@ const ThemMoiHoSo = () => {
                 >
                   <option>IELTS</option>
                   <option>TOEFL</option>
+                  <option>TOEIC</option> {/* Thêm option TOEIC */}
                 </select>
               </div>
               <div>
@@ -201,6 +252,43 @@ const ThemMoiHoSo = () => {
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor="highSchool"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Trường THPT
+              </label>
+              <input
+                type="text"
+                id="highSchool"
+                name="highSchool"
+                value={formData.highSchool}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                placeholder="VD: THPT Lê Quý Đôn"
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="priority"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Đối tượng ưu tiên
+              </label>
+              <input
+                type="text"
+                id="priority"
+                name="priority"
+                value={formData.priority}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                placeholder="VD: Ưu tiên 1, Ưu tiên 2, ..."
+              />
             </div>
 
             <div className="flex justify-between items-center pt-4">
