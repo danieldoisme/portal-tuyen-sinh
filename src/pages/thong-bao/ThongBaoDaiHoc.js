@@ -1,125 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "../../components/ui/Card";
-
-const data = [
-  {
-    slug: "bang-quy-doi-tuong-duong-diem-trung-tuyen-2025",
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "23/07/2025",
-    title:
-      "Bảng quy đổi tương đương điểm trúng tuyển giữa các phương thức xét tuyển đại học hệ chính quy đợt 1 năm 2025",
-  },
-  {
-    slug: "nguong-dam-bao-chat-luong-dau-vao-2025",
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "21/07/2025",
-    title:
-      "Ngưỡng đảm bảo chất lượng đầu vào trình độ đại học hệ chính quy đợt 1 năm 2025",
-  },
-  {
-    slug: "ve-viec-dang-ky-nguyen-vong-xet-tuyen-2025",
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "14/07/2025",
-    title:
-      "Về việc đăng ký nguyện vọng xét tuyển đại học chính quy trên Hệ thống hỗ trợ tuyển sinh chung của Bộ Giáo dục và Đào tạo",
-  },
-  {
-    slug: "ket-qua-xet-tuyen-thang-va-utxt-2025",
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "24/06/2025",
-    title:
-      "Kết quả xét tuyển thẳng và Ưu tiên xét tuyển vào đại học chính quy năm 2025",
-  },
-  {
-    slug: "dieu-chinh-thoi-gian-dang-ky-xet-tuyen-2025",
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "28/05/2025",
-    title:
-      "Sửa đổi, bổ sung một số nội dung của Đề án tuyển sinh và thông báo tuyển sinh đại học hệ chính quy năm 2025",
-  },
-  {
-    slug: "thong-bao-mo-he-thong-xet-tuyen-2025",
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "04/06/2025",
-    title:
-      "Về việc điều chỉnh thời gian đăng ký thông tin xét tuyển trực tuyến cho thí sinh đăng ký xét tuyển vào Đại học chính quy năm 2025",
-  },
-  {
-    slug: "sua-doi-bo-sung-de-an-tuyen-sinh-2025",
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "20/05/2025",
-    title: "Thông báo tuyển sinh Đại học hệ chính quy năm 2025 (Dự kiến)",
-  },
-  {
-    slug: "thong-tin-tuyen-sinh-chuong-trinh-chat-luong-cao-2025",
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "15/05/2025",
-    title:
-      "Thông tin tuyển sinh các chương trình Chất lượng cao trình độ đại học năm 2025",
-  },
-  {
-    slug: "huong-dan-dang-ky-xet-tuyen-ket-hop-2025",
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "10/05/2025",
-    title:
-      "Hướng dẫn đăng ký xét tuyển kết hợp và xét tuyển dựa vào kết quả bài thi đánh giá năng lực, đánh giá tư duy năm 2025",
-  },
-  {
-    slug: "thong-bao-nguong-diem-nhan-ho-so-xet-tuyen",
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "05/05/2025",
-    title:
-      "Thông báo ngưỡng điểm nhận hồ sơ xét tuyển các phương thức (trừ phương thức thi tốt nghiệp THPT)",
-  },
-  {
-    slug: "thong-bao-thi-cap-chung-chi-tieng-anh-pte-academic",
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "01/05/2025",
-    title:
-      "Thông báo về việc tổ chức thi cấp Chứng chỉ tiếng Anh quốc tế PTE Academic",
-  },
-  {
-    slug: "thong-bao-tuyen-sinh-lien-thong-cao-dang",
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "25/04/2025",
-    title:
-      "Thông báo tuyển sinh liên thông từ trình độ cao đẳng lên trình độ đại học năm 2025",
-  },
-  {
-    slug: "thong-bao-tuyen-sinh-dai-hoc-van-bang-2",
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "20/04/2025",
-    title: "Thông báo tuyển sinh đại học văn bằng 2, hệ chính quy năm 2025",
-  },
-  {
-    slug: "chinh-sach-hoc-bong-ho-tro-tai-chinh-2025-2026",
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "15/04/2025",
-    title:
-      "Chính sách học bổng và hỗ trợ tài chính cho sinh viên năm học 2025-2026",
-  },
-  {
-    slug: "ngay-hoi-tu-van-tuyen-sinh-huong-nghiep-ptit-2025",
-    image:
-      "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png",
-    date: "10/04/2025",
-    title: "Ngày hội tư vấn tuyển sinh - hướng nghiệp PTIT 2025",
-  },
-];
 
 const ArrowButton = ({ onClick, direction, disabled }) => (
   <button
@@ -166,21 +46,50 @@ const ArrowButton = ({ onClick, direction, disabled }) => (
 );
 
 const ThongBaoDaiHoc = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
+  const [articles, setArticles] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  useEffect(() => {
+    const fetchArticles = async () => {
+      setLoading(true);
+      setError(null);
+      const category = "thong-bao";
+      const subcategory = "tuyen-sinh-dai-hoc";
 
-  const handleNext = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  };
+      try {
+        const response = await fetch(
+          `http://localhost:8081/api/articles/${category}/${subcategory}/${page}`
+        );
+        if (!response.ok) {
+          throw new Error("Lỗi khi kết nối tới máy chủ.");
+        }
+        const result = await response.json();
+        if (result.status === "success") {
+          setArticles(result.data);
+          setTotalPages(result.pagination.totalPages || 1);
+        } else {
+          throw new Error("API trả về lỗi.");
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticles();
+  }, [page]);
 
   const handlePrev = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 1));
+    setPage((prevPage) => Math.max(prevPage - 1, 1));
   };
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const selectedData = data.slice(startIndex, startIndex + itemsPerPage);
+  const handleNext = () => {
+    setPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  };
 
   return (
     <div className="bg-gray-50 py-12">
@@ -223,34 +132,43 @@ const ThongBaoDaiHoc = () => {
           Tuyển sinh đại học
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {selectedData.map((item, index) => (
-            <Card
-              key={item.slug}
-              image={item.image}
-              date={item.date}
-              title={item.title}
-              href={`/thong-bao/tuyen-sinh-dai-hoc/${item.slug}`}
-            />
-          ))}
-        </div>
+        {loading && <p className="text-center">Đang tải bài viết...</p>}
+        {error && <p className="text-center text-red-500">Lỗi: {error}</p>}
 
-        {totalPages > 1 && (
-          <div className="flex justify-center items-center mt-12 space-x-4">
-            <ArrowButton
-              onClick={handlePrev}
-              direction="left"
-              disabled={currentPage === 1}
-            />
-            <span className="text-gray-700 font-semibold">
-              Trang {currentPage} / {totalPages}
-            </span>
-            <ArrowButton
-              onClick={handleNext}
-              direction="right"
-              disabled={currentPage === totalPages}
-            />
-          </div>
+        {!loading && !error && (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {articles.map((article) => (
+                <Card
+                  key={article.id}
+                  image="https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2025/05/1.png"
+                  date={new Date(article.publishedDate).toLocaleDateString(
+                    "vi-VN"
+                  )}
+                  title={article.title}
+                  href={`/thong-bao/${article.id}`}
+                />
+              ))}
+            </div>
+
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center mt-12 space-x-4">
+                <ArrowButton
+                  onClick={handlePrev}
+                  direction="left"
+                  disabled={page === 1}
+                />
+                <span className="font-semibold">
+                  {page} / {totalPages}
+                </span>
+                <ArrowButton
+                  onClick={handleNext}
+                  direction="right"
+                  disabled={page === totalPages}
+                />
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
