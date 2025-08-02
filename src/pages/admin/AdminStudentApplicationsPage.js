@@ -9,6 +9,7 @@ const AdminStudentApplicationsPage = () => {
   const [statusFilter, setStatusFilter] = useState("all");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(false);
   const [selectedDetail, setSelectedDetail] = useState(null);
   const navigate = useNavigate();
@@ -19,7 +20,9 @@ const AdminStudentApplicationsPage = () => {
       setLoading(true);
       try {
         const res = await fetch(
-          `http://localhost:8081/api/application/list?applicationYear=2025&page=${page - 1}&size=${PAGE_SIZE}`
+          `http://localhost:8081/api/application/list?applicationYear=2025&page=${
+            page - 1
+          }&size=${PAGE_SIZE}`
         );
         const data = await res.json();
         setApplications(data.content || []);
@@ -57,7 +60,9 @@ const AdminStudentApplicationsPage = () => {
       });
       // Sau khi cập nhật, reload lại danh sách
       const res = await fetch(
-        `http://localhost:8081/api/application/list?applicationYear=2025&page=${page - 1}&size=${PAGE_SIZE}`
+        `http://localhost:8081/api/application/list?applicationYear=2025&page=${
+          page - 1
+        }&size=${PAGE_SIZE}`
       );
       const data = await res.json();
       setApplications(data.content || []);
@@ -248,7 +253,8 @@ const AdminStudentApplicationsPage = () => {
                     : "Từ chối"}
                 </div>
                 <div>
-                  <strong>Năm ứng tuyển:</strong> {selectedDetail.applicationYear}
+                  <strong>Năm ứng tuyển:</strong>{" "}
+                  {selectedDetail.applicationYear}
                 </div>
                 <div>
                   <strong>Trường THPT:</strong>{" "}
