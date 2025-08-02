@@ -8,20 +8,15 @@ const NopHoSoTrucTuyen = () => {
   const [showNhapHocAlert, setShowNhapHocAlert] = useState(false);
   const [studentInfo, setStudentInfo] = useState(null);
 
-  // Mock API để lấy thông tin sinh viên
   useEffect(() => {
-    const fetchStudentData = () => {
-      // Dữ liệu sinh viên giả
-      const mockStudent = {
-        email: "nguyenvanan@ptit.edu.vn",
-        cccd: "001234567890",
-        hoDem: "Nguyễn Văn",
-        ten: "An",
-      };
-      setStudentInfo(mockStudent);
-    };
-
-    fetchStudentData();
+    const studentData = localStorage.getItem("studentUser");
+    if (studentData) {
+      const student = JSON.parse(studentData);
+      const nameParts = student.fullName.split(" ");
+      const ten = nameParts.pop();
+      const hoDem = nameParts.join(" ");
+      setStudentInfo({ ...student, hoDem, ten });
+    }
   }, []);
 
   const handleLogout = () => {
