@@ -13,7 +13,7 @@ const CalendarIcon = () => (
   </svg>
 );
 
-const Card = ({ image, date, title, href = "#" }) => {
+const Card = ({ image, date, title,summary, href = "#" }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden group transition-shadow duration-300 hover:shadow-xl">
       <a href={href} className="block">

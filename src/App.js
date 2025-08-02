@@ -49,7 +49,15 @@ const AppLayout = () => {
         <Routes>
           <Route path="/" element={<TrangChu />} />
           <Route
-            path="/thong-bao/tuyen-sinh-dai-hoc/:slug"
+            path="/thong-bao/tuyen-sinh-dai-hoc/:id"
+            element={<ThongBaoChiTiet />}
+          />
+          <Route
+            path="/thong-bao/tuyen-sinh-sau-dai-hoc/:id"
+            element={<ThongBaoChiTiet />}
+          />
+          <Route
+            path="/thong-bao/tuyen-sinh-khac/:id"
             element={<ThongBaoChiTiet />}
           />
           <Route
@@ -62,7 +70,11 @@ const AppLayout = () => {
           />
           <Route path="/thong-bao/tuyen-sinh-khac" element={<ThongBaoKhac />} />
           <Route
-            path="/tin-tuc/thong-tin-bao-chi/:slug"
+            path="/tin-tuc/thong-tin-bao-chi/:id"
+            element={<TinTucChiTiet />}
+          />
+          <Route
+            path="/tin-tuc/hoat-dong-su-kien/:id"
             element={<TinTucChiTiet />}
           />
           <Route path="/tin-tuc/thong-tin-bao-chi" element={<TinTucBaoChi />} />

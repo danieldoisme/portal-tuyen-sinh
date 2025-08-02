@@ -147,7 +147,7 @@ const ThongBaoKhac = () => {
                     "vi-VN"
                   )}
                   title={article.title}
-                  href={`/thong-bao/${article.id}`}
+                  href={`/thong-bao/${article.subcategory}/${article.id}`}
                 />
               ))}
             </div>
