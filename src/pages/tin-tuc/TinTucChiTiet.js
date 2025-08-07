@@ -2,7 +2,11 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const CalendarIcon = () => (
-  <svg className="w-4 h-4 mr-1.5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+  <svg
+    className="w-4 h-4 mr-1.5 text-gray-500"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+  >
     <path
       fillRule="evenodd"
       d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
@@ -11,7 +15,11 @@ const CalendarIcon = () => (
   </svg>
 );
 const UserIcon = () => (
-  <svg className="w-4 h-4 mr-1.5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+  <svg
+    className="w-4 h-4 mr-1.5 text-gray-500"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+  >
     <path
       fillRule="evenodd"
       d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
@@ -59,7 +67,9 @@ const TinTucChiTiet = () => {
         const result = await res.json();
         if (result.status === "success" && result.data) {
           // Loại bỏ bài hiện tại khỏi danh sách liên quan
-          setRelatedPosts(result.data.filter((post) => post.id !== Number(id)).slice(0, 6));
+          setRelatedPosts(
+            result.data.filter((post) => post.id !== Number(id)).slice(0, 6)
+          );
         } else {
           setRelatedPosts([]);
         }
@@ -81,7 +91,9 @@ const TinTucChiTiet = () => {
   if (!article) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
-        <h1 className="text-2xl font-bold">{errorMsg || "Không tìm thấy tin tức"}</h1>
+        <h1 className="text-2xl font-bold">
+          {errorMsg || "Không tìm thấy tin tức"}
+        </h1>
         <Link
           to="/tin-tuc/thong-tin-bao-chi"
           className="mt-6 inline-block text-red-600 hover:underline"
@@ -142,7 +154,9 @@ const TinTucChiTiet = () => {
                 <CalendarIcon />
                 <span>
                   {article.publishedDate
-                    ? new Date(article.publishedDate).toLocaleDateString("vi-VN")
+                    ? new Date(article.publishedDate).toLocaleDateString(
+                        "vi-VN"
+                      )
                     : ""}
                 </span>
               </div>
@@ -151,14 +165,9 @@ const TinTucChiTiet = () => {
                 <span>{article.author}</span>
               </div>
             </div>
-            {/* <img
-              src={article.coverImage || "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/09/anhDaiDien-1725526307568-1.png"}
-              alt={article.title}
-              className="w-full h-64 object-cover rounded-lg mb-6"
-            /> */}
             <hr className="mb-6" />
             <div
-              className="max-w-none" // Bỏ class prose nếu bị mất định dạng
+              className="max-w-none"
               dangerouslySetInnerHTML={{ __html: article.content }}
             />
           </div>
@@ -178,7 +187,7 @@ const TinTucChiTiet = () => {
                     <img
                       src={
                         post.coverImage ||
-                        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/09/anhDaiDien-1725526307568-1.png"
+                        "https://tuyensinh.ptit.edu.vn/wp-content/uploads/sites/4/2024/08/anhDaiDien-1715650686861-2.png"
                       }
                       alt={post.title}
                       className="w-24 h-16 object-cover rounded-md mr-4 flex-shrink-0"
@@ -186,7 +195,9 @@ const TinTucChiTiet = () => {
                     <div>
                       <p className="text-xs text-gray-500 mb-1">
                         {post.publishedDate
-                          ? new Date(post.publishedDate).toLocaleDateString("vi-VN")
+                          ? new Date(post.publishedDate).toLocaleDateString(
+                              "vi-VN"
+                            )
                           : ""}
                       </p>
                       <h3 className="text-sm font-semibold text-gray-800 group-hover:text-red-700 transition-colors line-clamp-2">
